@@ -1,0 +1,982 @@
+﻿[
+  {
+    "Id": 1,
+    "RegionId": 1,
+    "Name": "LIMA"
+  },
+  {
+    "Id": 2,
+    "RegionId": 1,
+    "Name": "BARRANCA"
+  },
+  {
+    "Id": 3,
+    "RegionId": 1,
+    "Name": "CAJATAMBO"
+  },
+  {
+    "Id": 4,
+    "RegionId": 1,
+    "Name": "CALLAO"
+  },
+  {
+    "Id": 5,
+    "RegionId": 1,
+    "Name": "CANTA"
+  },
+  {
+    "Id": 6,
+    "RegionId": 1,
+    "Name": "CANETE"
+  },
+  {
+    "Id": 7,
+    "RegionId": 1,
+    "Name": "HUARAL"
+  },
+  {
+    "Id": 8,
+    "RegionId": 1,
+    "Name": "HUAROCHIRI"
+  },
+  {
+    "Id": 9,
+    "RegionId": 1,
+    "Name": "HUAURA"
+  },
+  {
+    "Id": 10,
+    "RegionId": 1,
+    "Name": "OYON"
+  },
+  {
+    "Id": 11,
+    "RegionId": 1,
+    "Name": "YAUYOS"
+  },
+  {
+    "Id": 12,
+    "RegionId": 2,
+    "Name": "BAGUA"
+  },
+  {
+    "Id": 13,
+    "RegionId": 2,
+    "Name": "BONGARA"
+  },
+  {
+    "Id": 14,
+    "RegionId": 2,
+    "Name": "CHACHAPOYAS"
+  },
+  {
+    "Id": 15,
+    "RegionId": 2,
+    "Name": "CONDORCANQUI"
+  },
+  {
+    "Id": 16,
+    "RegionId": 2,
+    "Name": "LUYA"
+  },
+  {
+    "Id": 17,
+    "RegionId": 2,
+    "Name": "RODRIGUEZ DE MENDOZA"
+  },
+  {
+    "Id": 18,
+    "RegionId": 2,
+    "Name": "UTCUBAMBA"
+  },
+  {
+    "Id": 19,
+    "RegionId": 3,
+    "Name": "ABANCAY"
+  },
+  {
+    "Id": 20,
+    "RegionId": 3,
+    "Name": "ANDAHUAYLAS"
+  },
+  {
+    "Id": 21,
+    "RegionId": 3,
+    "Name": "ANTABAMBA"
+  },
+  {
+    "Id": 22,
+    "RegionId": 3,
+    "Name": "AYMARAES"
+  },
+  {
+    "Id": 23,
+    "RegionId": 3,
+    "Name": "CHINCHEROS"
+  },
+  {
+    "Id": 24,
+    "RegionId": 3,
+    "Name": "COTABAMBAS"
+  },
+  {
+    "Id": 25,
+    "RegionId": 3,
+    "Name": "GRAU"
+  },
+  {
+    "Id": 26,
+    "RegionId": 4,
+    "Name": "AREQUIPA"
+  },
+  {
+    "Id": 27,
+    "RegionId": 4,
+    "Name": "CAMANA"
+  },
+  {
+    "Id": 28,
+    "RegionId": 4,
+    "Name": "CARAVELI"
+  },
+  {
+    "Id": 29,
+    "RegionId": 4,
+    "Name": "CASTILLA"
+  },
+  {
+    "Id": 30,
+    "RegionId": 4,
+    "Name": "CAYLLOMA"
+  },
+  {
+    "Id": 31,
+    "RegionId": 4,
+    "Name": "CONDESUYOS"
+  },
+  {
+    "Id": 32,
+    "RegionId": 4,
+    "Name": "ISLAY"
+  },
+  {
+    "Id": 33,
+    "RegionId": 4,
+    "Name": "LA UNION"
+  },
+  {
+    "Id": 34,
+    "RegionId": 5,
+    "Name": "CANGALLO"
+  },
+  {
+    "Id": 35,
+    "RegionId": 5,
+    "Name": "HUAMANGA"
+  },
+  {
+    "Id": 36,
+    "RegionId": 5,
+    "Name": "HUANCA SANCOS"
+  },
+  {
+    "Id": 37,
+    "RegionId": 5,
+    "Name": "HUANTA"
+  },
+  {
+    "Id": 38,
+    "RegionId": 5,
+    "Name": "LA MAR"
+  },
+  {
+    "Id": 39,
+    "RegionId": 5,
+    "Name": "LUCANAS"
+  },
+  {
+    "Id": 40,
+    "RegionId": 5,
+    "Name": "PARINACOCHAS"
+  },
+  {
+    "Id": 41,
+    "RegionId": 5,
+    "Name": "PAUCAR DEL SARA SARA"
+  },
+  {
+    "Id": 42,
+    "RegionId": 5,
+    "Name": "SUCRE"
+  },
+  {
+    "Id": 43,
+    "RegionId": 5,
+    "Name": "VILCAS HUAMAN"
+  },
+  {
+    "Id": 44,
+    "RegionId": 5,
+    "Name": "VICTOR FAJARDO"
+  },
+  {
+    "Id": 45,
+    "RegionId": 6,
+    "Name": "CAJABAMBA"
+  },
+  {
+    "Id": 46,
+    "RegionId": 6,
+    "Name": "CAJAMARCA"
+  },
+  {
+    "Id": 47,
+    "RegionId": 6,
+    "Name": "CELENDIN"
+  },
+  {
+    "Id": 48,
+    "RegionId": 6,
+    "Name": "CHOTA"
+  },
+  {
+    "Id": 49,
+    "RegionId": 6,
+    "Name": "CONTUMAZA"
+  },
+  {
+    "Id": 50,
+    "RegionId": 6,
+    "Name": "CUTERVO"
+  },
+  {
+    "Id": 51,
+    "RegionId": 6,
+    "Name": "HUALGAYOC"
+  },
+  {
+    "Id": 52,
+    "RegionId": 6,
+    "Name": "JAEN"
+  },
+  {
+    "Id": 53,
+    "RegionId": 6,
+    "Name": "SAN IGNACIO"
+  },
+  {
+    "Id": 54,
+    "RegionId": 6,
+    "Name": "SAN MARCOS"
+  },
+  {
+    "Id": 55,
+    "RegionId": 6,
+    "Name": "SAN MIGUEL"
+  },
+  {
+    "Id": 56,
+    "RegionId": 6,
+    "Name": "SAN PABLO"
+  },
+  {
+    "Id": 57,
+    "RegionId": 6,
+    "Name": "SANTA CRUZ"
+  },
+  {
+    "Id": 58,
+    "RegionId": 7,
+    "Name": "ACOMAYO"
+  },
+  {
+    "Id": 59,
+    "RegionId": 7,
+    "Name": "ANTA"
+  },
+  {
+    "Id": 60,
+    "RegionId": 7,
+    "Name": "CALCA"
+  },
+  {
+    "Id": 61,
+    "RegionId": 7,
+    "Name": "CANAS"
+  },
+  {
+    "Id": 62,
+    "RegionId": 7,
+    "Name": "CANCHIS"
+  },
+  {
+    "Id": 63,
+    "RegionId": 7,
+    "Name": "CHUMBIVILCAS"
+  },
+  {
+    "Id": 64,
+    "RegionId": 7,
+    "Name": "CUSCO"
+  },
+  {
+    "Id": 65,
+    "RegionId": 7,
+    "Name": "ESPINAR"
+  },
+  {
+    "Id": 66,
+    "RegionId": 7,
+    "Name": "LA CONVENCION"
+  },
+  {
+    "Id": 67,
+    "RegionId": 7,
+    "Name": "PARURO"
+  },
+  {
+    "Id": 68,
+    "RegionId": 7,
+    "Name": "PAUCARTAMBO"
+  },
+  {
+    "Id": 69,
+    "RegionId": 7,
+    "Name": "QUISPICANCHI"
+  },
+  {
+    "Id": 70,
+    "RegionId": 7,
+    "Name": "URUBAMBA"
+  },
+  {
+    "Id": 71,
+    "RegionId": 8,
+    "Name": "ACOBAMBA"
+  },
+  {
+    "Id": 72,
+    "RegionId": 8,
+    "Name": "ANGARAES"
+  },
+  {
+    "Id": 73,
+    "RegionId": 8,
+    "Name": "CASTROVIRREYNA"
+  },
+  {
+    "Id": 74,
+    "RegionId": 8,
+    "Name": "CHURCAMPA"
+  },
+  {
+    "Id": 75,
+    "RegionId": 8,
+    "Name": "HUANCAVELICA"
+  },
+  {
+    "Id": 76,
+    "RegionId": 8,
+    "Name": "HUAYTARA"
+  },
+  {
+    "Id": 77,
+    "RegionId": 8,
+    "Name": "TAYACAJA"
+  },
+  {
+    "Id": 78,
+    "RegionId": 9,
+    "Name": "AMBO"
+  },
+  {
+    "Id": 79,
+    "RegionId": 9,
+    "Name": "DOS DE MAYO"
+  },
+  {
+    "Id": 80,
+    "RegionId": 9,
+    "Name": "HUACAYBAMBA"
+  },
+  {
+    "Id": 81,
+    "RegionId": 9,
+    "Name": "HUAMALIES"
+  },
+  {
+    "Id": 82,
+    "RegionId": 9,
+    "Name": "HUANUCO"
+  },
+  {
+    "Id": 83,
+    "RegionId": 9,
+    "Name": "LAURICOCHA"
+  },
+  {
+    "Id": 84,
+    "RegionId": 9,
+    "Name": "LEONCIO PRADO"
+  },
+  {
+    "Id": 85,
+    "RegionId": 9,
+    "Name": "MARANON"
+  },
+  {
+    "Id": 86,
+    "RegionId": 9,
+    "Name": "PACHITEA"
+  },
+  {
+    "Id": 87,
+    "RegionId": 9,
+    "Name": "PUERTO INCA"
+  },
+  {
+    "Id": 88,
+    "RegionId": 9,
+    "Name": "YAROWILCA"
+  },
+  {
+    "Id": 89,
+    "RegionId": 10,
+    "Name": "CHINCHA"
+  },
+  {
+    "Id": 90,
+    "RegionId": 10,
+    "Name": "ICA"
+  },
+  {
+    "Id": 91,
+    "RegionId": 10,
+    "Name": "NAZCA"
+  },
+  {
+    "Id": 92,
+    "RegionId": 10,
+    "Name": "PALPA"
+  },
+  {
+    "Id": 93,
+    "RegionId": 10,
+    "Name": "PISCO"
+  },
+  {
+    "Id": 94,
+    "RegionId": 11,
+    "Name": "CHANCHAMAYO"
+  },
+  {
+    "Id": 95,
+    "RegionId": 11,
+    "Name": "CHUPACA"
+  },
+  {
+    "Id": 96,
+    "RegionId": 11,
+    "Name": "CONCEPCION"
+  },
+  {
+    "Id": 97,
+    "RegionId": 11,
+    "Name": "HUANCAYO"
+  },
+  {
+    "Id": 98,
+    "RegionId": 11,
+    "Name": "JAUJA"
+  },
+  {
+    "Id": 99,
+    "RegionId": 11,
+    "Name": "JUNIN"
+  },
+  {
+    "Id": 100,
+    "RegionId": 11,
+    "Name": "SATIPO"
+  },
+  {
+    "Id": 101,
+    "RegionId": 11,
+    "Name": "TARMA"
+  },
+  {
+    "Id": 102,
+    "RegionId": 11,
+    "Name": "YAULI"
+  },
+  {
+    "Id": 103,
+    "RegionId": 12,
+    "Name": "ASCOPE"
+  },
+  {
+    "Id": 104,
+    "RegionId": 12,
+    "Name": "BOLIVAR"
+  },
+  {
+    "Id": 105,
+    "RegionId": 12,
+    "Name": "CHEPEN"
+  },
+  {
+    "Id": 106,
+    "RegionId": 12,
+    "Name": "GRAN CHIMU"
+  },
+  {
+    "Id": 107,
+    "RegionId": 12,
+    "Name": "JULCAN"
+  },
+  {
+    "Id": 108,
+    "RegionId": 12,
+    "Name": "OTUZCO"
+  },
+  {
+    "Id": 109,
+    "RegionId": 12,
+    "Name": "PACASMAYO"
+  },
+  {
+    "Id": 110,
+    "RegionId": 12,
+    "Name": "PATAZ"
+  },
+  {
+    "Id": 111,
+    "RegionId": 12,
+    "Name": "SANTIAGO DE CHUCO"
+  },
+  {
+    "Id": 112,
+    "RegionId": 12,
+    "Name": "SANCHEZ CARRION"
+  },
+  {
+    "Id": 113,
+    "RegionId": 12,
+    "Name": "TRUJILLO"
+  },
+  {
+    "Id": 114,
+    "RegionId": 12,
+    "Name": "VIRU"
+  },
+  {
+    "Id": 115,
+    "RegionId": 13,
+    "Name": "CHICLAYO"
+  },
+  {
+    "Id": 116,
+    "RegionId": 13,
+    "Name": "FERRENAFE"
+  },
+  {
+    "Id": 117,
+    "RegionId": 13,
+    "Name": "LAMBAYEQUE"
+  },
+  {
+    "Id": 118,
+    "RegionId": 14,
+    "Name": "ALTO AMAZONAS"
+  },
+  {
+    "Id": 119,
+    "RegionId": 14,
+    "Name": "DATEM DEL MARANON"
+  },
+  {
+    "Id": 120,
+    "RegionId": 14,
+    "Name": "LORETO"
+  },
+  {
+    "Id": 121,
+    "RegionId": 14,
+    "Name": "MARISCAL RAMON CASTILLA"
+  },
+  {
+    "Id": 122,
+    "RegionId": 14,
+    "Name": "MAYNAS"
+  },
+  {
+    "Id": 123,
+    "RegionId": 14,
+    "Name": "PUTUMAYO"
+  },
+  {
+    "Id": 124,
+    "RegionId": 14,
+    "Name": "REQUENA"
+  },
+  {
+    "Id": 125,
+    "RegionId": 14,
+    "Name": "UCAYALI"
+  },
+  {
+    "Id": 126,
+    "RegionId": 15,
+    "Name": "MANU"
+  },
+  {
+    "Id": 127,
+    "RegionId": 15,
+    "Name": "TAHUAMANU"
+  },
+  {
+    "Id": 128,
+    "RegionId": 15,
+    "Name": "TAMBOPATA"
+  },
+  {
+    "Id": 129,
+    "RegionId": 16,
+    "Name": "GENERAL SANCHEZ CERRO"
+  },
+  {
+    "Id": 130,
+    "RegionId": 16,
+    "Name": "ILO"
+  },
+  {
+    "Id": 131,
+    "RegionId": 16,
+    "Name": "MARISCAL NIETO"
+  },
+  {
+    "Id": 132,
+    "RegionId": 17,
+    "Name": "DANIEL ALCIDES CARRION"
+  },
+  {
+    "Id": 133,
+    "RegionId": 17,
+    "Name": "OXAPAMPA"
+  },
+  {
+    "Id": 134,
+    "RegionId": 17,
+    "Name": "PASCO"
+  },
+  {
+    "Id": 135,
+    "RegionId": 18,
+    "Name": "AYABACA"
+  },
+  {
+    "Id": 136,
+    "RegionId": 18,
+    "Name": "HUANCABAMBA"
+  },
+  {
+    "Id": 137,
+    "RegionId": 18,
+    "Name": "MORROPON"
+  },
+  {
+    "Id": 138,
+    "RegionId": 18,
+    "Name": "PAITA"
+  },
+  {
+    "Id": 139,
+    "RegionId": 18,
+    "Name": "PIURA"
+  },
+  {
+    "Id": 140,
+    "RegionId": 18,
+    "Name": "SECHURA"
+  },
+  {
+    "Id": 141,
+    "RegionId": 18,
+    "Name": "SULLANA"
+  },
+  {
+    "Id": 142,
+    "RegionId": 18,
+    "Name": "TALARA"
+  },
+  {
+    "Id": 143,
+    "RegionId": 19,
+    "Name": "AZANGARO"
+  },
+  {
+    "Id": 144,
+    "RegionId": 19,
+    "Name": "CARABAYA"
+  },
+  {
+    "Id": 145,
+    "RegionId": 19,
+    "Name": "CHUCUITO"
+  },
+  {
+    "Id": 146,
+    "RegionId": 19,
+    "Name": "EL COLLAO"
+  },
+  {
+    "Id": 147,
+    "RegionId": 19,
+    "Name": "HUANCANE"
+  },
+  {
+    "Id": 148,
+    "RegionId": 19,
+    "Name": "LAMPA"
+  },
+  {
+    "Id": 149,
+    "RegionId": 19,
+    "Name": "MELGAR"
+  },
+  {
+    "Id": 150,
+    "RegionId": 19,
+    "Name": "MOHO"
+  },
+  {
+    "Id": 151,
+    "RegionId": 19,
+    "Name": "PUNO"
+  },
+  {
+    "Id": 152,
+    "RegionId": 19,
+    "Name": "SAN ANTONIO DE PUTINA"
+  },
+  {
+    "Id": 153,
+    "RegionId": 19,
+    "Name": "SAN ROMAN"
+  },
+  {
+    "Id": 154,
+    "RegionId": 19,
+    "Name": "SANDIA"
+  },
+  {
+    "Id": 155,
+    "RegionId": 19,
+    "Name": "YUNGUYO"
+  },
+  {
+    "Id": 156,
+    "RegionId": 20,
+    "Name": "BELLAVISTA"
+  },
+  {
+    "Id": 157,
+    "RegionId": 20,
+    "Name": "EL DORADO"
+  },
+  {
+    "Id": 158,
+    "RegionId": 20,
+    "Name": "HUALLAGA"
+  },
+  {
+    "Id": 159,
+    "RegionId": 20,
+    "Name": "LAMAS"
+  },
+  {
+    "Id": 160,
+    "RegionId": 20,
+    "Name": "MARISCAL CACERES"
+  },
+  {
+    "Id": 161,
+    "RegionId": 20,
+    "Name": "MOYOBAMBA"
+  },
+  {
+    "Id": 162,
+    "RegionId": 20,
+    "Name": "PICOTA"
+  },
+  {
+    "Id": 163,
+    "RegionId": 20,
+    "Name": "RIOJA"
+  },
+  {
+    "Id": 164,
+    "RegionId": 20,
+    "Name": "SAN MARTIN"
+  },
+  {
+    "Id": 165,
+    "RegionId": 20,
+    "Name": "TOCACHE"
+  },
+  {
+    "Id": 166,
+    "RegionId": 21,
+    "Name": "CANDARAVE"
+  },
+  {
+    "Id": 167,
+    "RegionId": 21,
+    "Name": "JORGE BASADRE"
+  },
+  {
+    "Id": 168,
+    "RegionId": 21,
+    "Name": "TACNA"
+  },
+  {
+    "Id": 169,
+    "RegionId": 21,
+    "Name": "TARATA"
+  },
+  {
+    "Id": 170,
+    "RegionId": 22,
+    "Name": "CONTRALMIRANTE VILLAR"
+  },
+  {
+    "Id": 171,
+    "RegionId": 22,
+    "Name": "TUMBES"
+  },
+  {
+    "Id": 172,
+    "RegionId": 22,
+    "Name": "ZARUMILLA"
+  },
+  {
+    "Id": 173,
+    "RegionId": 23,
+    "Name": "ATALAYA"
+  },
+  {
+    "Id": 174,
+    "RegionId": 23,
+    "Name": "CORONEL PORTILLO"
+  },
+  {
+    "Id": 175,
+    "RegionId": 23,
+    "Name": "PADRE ABAD"
+  },
+  {
+    "Id": 176,
+    "RegionId": 23,
+    "Name": "PURUS"
+  },
+  {
+    "Id": 177,
+    "RegionId": 24,
+    "Name": "AIJA"
+  },
+  {
+    "Id": 178,
+    "RegionId": 24,
+    "Name": "ANTONIO RAYMONDI"
+  },
+  {
+    "Id": 179,
+    "RegionId": 24,
+    "Name": "ASUNCION"
+  },
+  {
+    "Id": 180,
+    "RegionId": 24,
+    "Name": "BOLOGNESI"
+  },
+  {
+    "Id": 181,
+    "RegionId": 24,
+    "Name": "CARHUAZ"
+  },
+  {
+    "Id": 182,
+    "RegionId": 24,
+    "Name": "CARLOS FERMIN FITZCARRALD"
+  },
+  {
+    "Id": 183,
+    "RegionId": 24,
+    "Name": "CASMA"
+  },
+  {
+    "Id": 184,
+    "RegionId": 24,
+    "Name": "CORONGO"
+  },
+  {
+    "Id": 185,
+    "RegionId": 24,
+    "Name": "HUARAZ"
+  },
+  {
+    "Id": 186,
+    "RegionId": 24,
+    "Name": "HUARI"
+  },
+  {
+    "Id": 187,
+    "RegionId": 24,
+    "Name": "HUARMEY"
+  },
+  {
+    "Id": 188,
+    "RegionId": 24,
+    "Name": "HUAYLAS"
+  },
+  {
+    "Id": 189,
+    "RegionId": 24,
+    "Name": "MARISCAL LUZURIAGA"
+  },
+  {
+    "Id": 190,
+    "RegionId": 24,
+    "Name": "OCROS"
+  },
+  {
+    "Id": 191,
+    "RegionId": 24,
+    "Name": "PALLASCA"
+  },
+  {
+    "Id": 192,
+    "RegionId": 24,
+    "Name": "POMABAMBA"
+  },
+  {
+    "Id": 193,
+    "RegionId": 24,
+    "Name": "RECUAY"
+  },
+  {
+    "Id": 194,
+    "RegionId": 24,
+    "Name": "SANTA"
+  },
+  {
+    "Id": 195,
+    "RegionId": 24,
+    "Name": "SIHUAS"
+  },
+  {
+    "Id": 196,
+    "RegionId": 24,
+    "Name": "YUNGAY"
+  }
+]

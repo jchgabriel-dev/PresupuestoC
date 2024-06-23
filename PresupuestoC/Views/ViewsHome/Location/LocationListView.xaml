@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="PresupuestoC.Views.Location.LocationListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresupuestoC.Views.Location"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid VerticalAlignment="Stretch" Margin="20 10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical"  VerticalAlignment="Top">
+            <TextBlock Text="Seleccione una moneda " Style="{DynamicResource lblFormTitle}"/>
+            <Border Height="10"/>
+            <Rectangle Fill="#000000" Height="2" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Border Height="8"/>
+        
+            
+
+
+        </StackPanel>
+
+        <DataGrid  Grid.Row="1" ItemsSource="{Binding LocationCollection}"                 
+                   VerticalScrollBarVisibility="Visible"
+                   SelectedItem="{Binding Selected}"
+                   Style="{DynamicResource dataForm}"
+                   MaxHeight="300"  MaxWidth="460"               
+                   VirtualizingStackPanel.VirtualizationMode="Recycling"
+                   EnableRowVirtualization="True"
+                   EnableColumnVirtualization="True"
+                   AutoGenerateColumns="False">
+            <DataGrid.InputBindings>
+                <MouseBinding
+                     MouseAction="LeftDoubleClick"
+                     Command="{Binding SelectedLocation}"
+                     />
+
+            </DataGrid.InputBindings>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn  MinWidth="100" Width="30*" >
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Padding="5 3" Text="Region"/>
+                                <Grid>
+                                    <TextBox x:Name="RegionFilter" Padding="5 2"  Style="{DynamicResource filterForm}" Text="{Binding DataContext.RegionFilter, RelativeSource={RelativeSource AncestorType=DataGrid}, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <TextBlock IsHitTestVisible="False" Text="Ingresar region" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6 0" Foreground="#388a9f">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=RegionFilter}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Padding="5 0" Text="{Binding Province.Region.Name}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn  MinWidth="100" Width="30*" >
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Padding="5 3" Text="Provincia"/>
+                                <Grid>
+                                    <TextBox x:Name="ProvinceFilter" Padding="5 2"  Style="{DynamicResource filterForm}" Text="{Binding DataContext.ProvinceFilter, RelativeSource={RelativeSource AncestorType=DataGrid}, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <TextBlock IsHitTestVisible="False" Text="Ingresar provinca" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6 0" Foreground="#388a9f">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=ProvinceFilter}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Padding="5 0" Text="{Binding Province.Name}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn  MinWidth="100" Width="30*" >
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Padding="5 3" Text="Distrito"/>
+                                <Grid>
+                                    <TextBox x:Name="DistrictFilter" Padding="5 2"  Style="{DynamicResource filterForm}" Text="{Binding DataContext.DistrictFilter, RelativeSource={RelativeSource AncestorType=DataGrid}, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <TextBlock IsHitTestVisible="False" Text="Ingresar distrito" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6 0" Foreground="#388a9f">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=DistrictFilter}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Padding="5 0" Text="{Binding Name}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+         
+
+
+        </DataGrid>
+
+        <Grid Grid.Row="2" Margin="0 8 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+
+
+                <ColumnDefinition Width="40*" MaxWidth="140"/>
+                <ColumnDefinition Width="50*" MaxWidth="140"/>
+                <ColumnDefinition MaxWidth="0"/>
+
+
+            </Grid.ColumnDefinitions>
+            <Button IsEnabled="{Binding IsSelected}" Command="{Binding SelectedLocation}" Grid.Column="2" Content="Aceptar" Style="{DynamicResource btnMain}" Tag="{DynamicResource check}"/>
+            <Button Command="{Binding CloseModal}" Grid.Column="3" Content="Cancelar" Style="{DynamicResource btnSecondary}" Tag="{DynamicResource cancel}"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

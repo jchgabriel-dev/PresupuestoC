@@ -1,0 +1,40 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <Style x:Key="checkForm" TargetType="{x:Type CheckBox}">
+        <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Margin" Value="8 3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid>
+                        <Rectangle VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="CheckboxBox" Width="13" Height="12" Fill="#efefef" Stroke="{TemplateBinding Foreground}" StrokeThickness="1"/>
+                        <Path Margin="1 0" x:Name="CheckMark" VerticalAlignment="Center" Stroke="{TemplateBinding Foreground}" StrokeThickness="1.5" Data="M1,4 L4,7 L9,1" SnapsToDevicePixels="True" Visibility="Collapsed"/>
+                        <ContentPresenter Margin="18 0 0 1" VerticalAlignment="Center" Content="{TemplateBinding Content}" />
+                    </Grid>
+                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="CheckboxBox" Property="Fill" Value="#dcdcdc"/>
+
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="CheckboxBox" Property="Fill" Value="#ffffff"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+
+    </Style>
+
+</ResourceDictionary>

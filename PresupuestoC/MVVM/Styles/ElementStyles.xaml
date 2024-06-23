@@ -1,0 +1,553 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    
+    <!--Botones radiales -->
+    
+    <Style x:Key="AddRadioButtonStyle" TargetType="{x:Type RadioButton}">
+        <Setter Property="Background" Value="#d2edc5"/>
+        <Setter Property="Foreground" Value="#3d6e27"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="BorderThickness" Value="0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <Border x:Name="menuButton" CornerRadius="5" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
+                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                                <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}" Stretch="None" Fill="#3d6e27" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            </Viewbox>
+                            <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
+                                            Grid.Column="1" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                                            FontWeight="{TemplateBinding FontWeight}"
+                                            FontSize="{TemplateBinding FontSize}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="menuButton" Property="Background" Value="#8ecb72"/>
+
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#4b8c2d"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+
+                        
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="EditRadioButtonStyle" TargetType="{x:Type RadioButton}">
+        <Setter Property="Background" Value="#c9ddee"/>
+        <Setter Property="Foreground" Value="#2f699a"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="BorderThickness" Value="0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <Border x:Name="menuButton" CornerRadius="5" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
+                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                                <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}" Stretch="None" Fill="#2f699a" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            </Viewbox>
+                            <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
+                                            Grid.Column="1" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                                            FontWeight="{TemplateBinding FontWeight}"
+                                            FontSize="{TemplateBinding FontSize}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="menuButton" Property="Background" Value="#9ac1df"/>
+
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#27557d"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#dfdfdf"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+
+                        </Trigger>
+                        
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="ListRadioButtonStyle" TargetType="{x:Type RadioButton}">
+        <Setter Property="Background" Value="#d1d1d1"/>
+        <Setter Property="Foreground" Value="#5d5d5d"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="BorderThickness" Value="0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <Border x:Name="menuButton" CornerRadius="5"  Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
+                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                                <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}" Stretch="None" Fill="#5d5d5d" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            </Viewbox>
+                            <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
+                                            Grid.Column="1" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                                            FontWeight="{TemplateBinding FontWeight}"
+                                            FontSize="{TemplateBinding FontSize}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="menuButton" Property="Background" Value="#b0b0b0"/>
+
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#3d3d3d"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#dfdfdf"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+                        
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DeleteRadioButtonStyle" TargetType="{x:Type RadioButton}">
+        <Setter Property="Background" Value="#f8d0d0"/>
+        <Setter Property="Foreground" Value="#a62f2f"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="BorderThickness" Value="0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <Border x:Name="menuButton"  CornerRadius="5" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
+                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                                <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}" Stretch="None" Fill="#a62f2f" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            </Viewbox>
+                            <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
+                                        Grid.Column="1" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                                        FontWeight="{TemplateBinding FontWeight}"
+                                        FontSize="{TemplateBinding FontSize}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="menuButton" Property="Background" Value="#f1b0b0"/>
+
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#a62f2f"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#dfdfdf"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Botones normales -->
+
+    <Style x:Key="btnAdd" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#d2edc5"/>
+        <Setter Property="Foreground" Value="#3d6e27"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="BorderThickness" Value="0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="menuButton" CornerRadius="5" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
+                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                                <Path x:Name="Icon" Data="{DynamicResource add}" Stretch="None" Fill="#3d6e27" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            </Viewbox>
+                            <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
+                        Grid.Column="1" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                        FontWeight="{TemplateBinding FontWeight}"
+                        FontSize="{TemplateBinding FontSize}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="menuButton" Property="Background" Value="#8ecb72"/>
+
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#4b8c2d"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="btnEdit" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#c9ddee"/>
+        <Setter Property="Foreground" Value="#2f699a"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="BorderThickness" Value="0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="menuButton" CornerRadius="5" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
+                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                                <Path x:Name="Icon" Data="{DynamicResource edit}" Stretch="None" Fill="#2f699a" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            </Viewbox>
+                            <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
+                        Grid.Column="1" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                        FontWeight="{TemplateBinding FontWeight}"
+                        FontSize="{TemplateBinding FontSize}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="menuButton" Property="Background" Value="#9ac1df"/>
+
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#27557d"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#dfdfdf"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+
+                        </Trigger>
+                        
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="btnDelete" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#f8d0d0"/>
+        <Setter Property="Foreground" Value="#a62f2f"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="BorderThickness" Value="0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="menuButton" CornerRadius="5" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
+                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                                <Path x:Name="Icon" Data="{DynamicResource delete}" Stretch="None" Fill="#a62f2f" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            </Viewbox>
+                            <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
+                            Grid.Column="1" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            FontSize="{TemplateBinding FontSize}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="menuButton" Property="Background" Value="#f1b0b0"/>
+
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#a62f2f"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#dfdfdf"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    
+    
+    <!--Otras opciones -->
+
+    <Style x:Key="OptionRadioButtonStyle" TargetType="{x:Type RadioButton}">
+        <Setter Property="Background" Value="#b5e5c5"/>
+        <Setter Property="Foreground" Value="#1f7c4b"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="BorderThickness" Value="0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <Border x:Name="menuButton" CornerRadius="5"  Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
+                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                                <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}" Stretch="None" Fill="#1f7c4b" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            </Viewbox>
+                            <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
+                                        Grid.Column="1" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                                        FontWeight="{TemplateBinding FontWeight}"
+                                        FontSize="{TemplateBinding FontSize}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="menuButton" Property="Background" Value="#72cb95"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#1f7c4b"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+    
+    <Style x:Key="btnAction" TargetType="{x:Type Button}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Height" Value="19"/>
+        <Setter Property="BorderThickness" Value="0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="4" x:Name="menuButton"  Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid HorizontalAlignment="Stretch" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border CornerRadius="4" x:Name="btnSelected" Grid.ColumnSpan="2" />
+                            <Viewbox VerticalAlignment="Center"  Height="15" Width="18" Margin="3 0 0 0">
+                                <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" Stretch="None" Fill="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            </Viewbox>
+                            <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
+                        Grid.Column="1" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                        FontWeight="{TemplateBinding FontWeight}"
+                        FontSize="{TemplateBinding FontSize}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="btnSelected" Property="Background" Value="#40ffffff"/>
+
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="btnSelected" Property="Background" Value="#ffffffff"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style x:Key="btnRemove" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#f8d0d0"/>
+        <Setter Property="Foreground" Value="#a62f2f"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="BorderThickness" Value="0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="menuButton"  Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="35"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="230" HorizontalAlignment="Right"/>
+                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                                <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" Stretch="None" Fill="#a62f2f" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            </Viewbox>
+                            <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
+                    Grid.Column="1" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                    FontWeight="{TemplateBinding FontWeight}"
+                    FontSize="{TemplateBinding FontSize}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="txtName" Property="Foreground" Value="#a62f2f"/>
+                            <Setter TargetName="Icon" Property="Fill" Value="#a62f2f"/>
+                            <Setter TargetName="btnSelected" Property="Background" Value="#e67979"/>
+
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="btnSelected" Property="Background" Value="#a62f2f"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="btnOption" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#b5e5c5"/>
+        <Setter Property="Foreground" Value="#1f7c4b"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="BorderThickness" Value="0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="menuButton"  Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
+                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                                <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" Stretch="None" Fill="#1f7c4b" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            </Viewbox>
+                            <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
+            Grid.Column="1" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+            FontWeight="{TemplateBinding FontWeight}"
+            FontSize="{TemplateBinding FontSize}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="txtName" Property="Foreground" Value="#1f7c4b"/>
+                            <Setter TargetName="Icon" Property="Fill" Value="#1f7c4b"/>
+                            <Setter TargetName="btnSelected" Property="Background" Value="#72cb95"/>
+
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="btnSelected" Property="Background" Value="#1f7c4b"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+</ResourceDictionary>

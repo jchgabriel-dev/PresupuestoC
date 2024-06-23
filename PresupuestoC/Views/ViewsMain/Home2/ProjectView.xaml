@@ -1,0 +1,385 @@
+﻿<UserControl x:Class="PresupuestoC.Views.Home2.ProjectView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresupuestoC.Views.Home2"
+             mc:Ignorable="d" 
+             xmlns:viewModels="clr-namespace:PresupuestoC.ViewModels.Project"
+             xmlns:views="clr-namespace:PresupuestoC.Views.Project"   
+             xmlns:order="clr-namespace:PresupuestoC.MVVM"
+             xmlns:height="clr-namespace:PresupuestoC.MVVM.Converters"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             
+    d:DesignHeight="550" d:DesignWidth="900">
+   
+    <Grid Background="#dfdfdf">
+        <Grid.Resources>
+
+            <order:ConverterViewModel x:Key="converterViewModel"/>
+            <height:ConverterHeightProject x:Key="converterHeightProject"/>
+            <height:ConverterHeightBudget x:Key="converterHeightBudget"/>
+
+
+            <DataTemplate DataType="{x:Type TypeName=viewModels:ProjectListViewModel}">
+                <views:ProjectListView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModels:ProjectCreateViewModel}">
+                <views:ProjectCreateView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModels:ProjectEditViewModel}">
+                <views:ProjectEditView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModels:ProjectDeleteViewModel}">
+                <views:ProjectDeleteView/>
+            </DataTemplate>
+
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="18*" MinWidth="150"/>
+            <ColumnDefinition Width="82*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55*" />
+                <RowDefinition Height="45*"/>
+            </Grid.RowDefinitions>
+            
+            
+            
+            
+            <Border Margin="6" Background="#ffffff" CornerRadius="5" >
+                <Grid VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Border Height="24" Background="#000000"  CornerRadius="5,5,0,0">
+                        <TextBlock Text="Carpetas" Foreground="White" Margin="10 4 0 0" FontSize="12" FontWeight="DemiBold"/>
+                    </Border>
+                    <StackPanel Grid.Row="1"  Orientation="Horizontal" Background="#c2c2c2" >
+                        <Button Foreground="#3D6E27" Tag="{DynamicResource add}" Command="{Binding FolderCreateNavigation}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource btnFolder}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsType}" Value="1">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsSelected}" Value="false">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button Foreground="#2F699A" Tag="{DynamicResource edit}" Command="{Binding FolderEditNavigation}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource btnFolder}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsType}" Value="1">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsType}" Value="2">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsSelected}" Value="false">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button  Foreground="#A62F2F" Tag="{DynamicResource delete}"  Command="{Binding FolderDeleteNavigation}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource btnFolder}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsType}" Value="1">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsType}" Value="2">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsSelected}" Value="false">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+
+
+                    <TreeView ItemsSource="{Binding Folders}" Grid.Row="2" Style="{DynamicResource treeFolder}">
+
+                        <b:Interaction.Behaviors>
+                            <order:BindableSelectedTree SelectedItem="{Binding Selected, Mode=OneWayToSource}" />
+                        </b:Interaction.Behaviors>
+
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+
+                                <Grid Margin="0 0 5 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Viewbox Margin="2 0 8 2" Height="15">
+                                        <Path Style="{DynamicResource FolderIconStyle}"/>
+                                    </Viewbox>
+                                    <TextBlock  Grid.Column="1" Text="{Binding Name}" Style="{DynamicResource lblFolder}" />
+                                </Grid>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource itemFolder}">
+                                <Setter Property="IsExpanded" Value="{Binding Expanded, Mode=TwoWay}"/>
+                                <Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}"/>
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                    </TreeView>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1" Background="#ffffff" CornerRadius="5" Margin="5 0 5 5">
+                <StackPanel>
+                    <Border Height="24" Background="#000000"  CornerRadius="5,5,0,0">
+                        <TextBlock Text="Portapapeles" Foreground="White" Margin="10 4 0 0" FontSize="12" FontWeight="DemiBold"/>
+                    </Border>
+                    <Button Style="{DynamicResource btnRemove}" Content="Quitar de la lista" Tag="{DynamicResource remove}"/>
+                    <DataGrid
+                        CanUserAddRows="False" CanUserDeleteRows="False"
+                        AutoGenerateColumns="False" CanUserResizeColumns="False"
+                        CanUserResizeRows="False">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Width="20*" MinWidth="40"/>
+                            <DataGridTextColumn Header="Nombre" Width="80*"/>
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                </StackPanel>
+            </Border> 
+
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="{Binding CurrentViewModel, Converter={StaticResource converterHeightProject},  ConverterParameter={x:Type viewModels:ProjectListViewModel}, Mode=OneWay}" />
+                <RowDefinition  Height="{Binding CurrentViewModel, Converter={StaticResource converterHeightBudget}, ConverterParameter={x:Type viewModels:ProjectListViewModel}, Mode=OneWay}" />
+            </Grid.RowDefinitions>
+
+            
+
+            <Border  Margin="0 6 6 6" Background="#FFFFFF" CornerRadius="5">
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Border  Background="#000000" CornerRadius="5,5,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Height="18" Margin="10 0 10 3">
+                                <Path Data="{DynamicResource project}" Fill="#ffffff"/>
+                            </Viewbox>
+                            <TextBlock Text="Proyectos" Style="{DynamicResource lblMainTitle}"/>
+                        </StackPanel>
+
+                    </Border>
+
+                    
+                    
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Background="#C2C2C2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" MaxHeight="20" MinHeight="20"/>
+                                    <RowDefinition/>
+                                    
+                                </Grid.RowDefinitions>
+                                
+                                
+                                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="4">
+
+
+                                    <Button Background="#fbcdcd" Foreground="#922222" Style="{DynamicResource btnAction}" Content="Importar" Tag="{DynamicResource import}"/>
+                                    <Border Height="2"/>
+                                    <Button Background="#baf8cb" Foreground="#135428"  Style="{DynamicResource btnAction}" Content="Exportar" Tag="{DynamicResource export}"/>
+                                    <Border Height="4"/>
+
+                                    <Button Style="{DynamicResource btnAction}" Content="Copiar" Tag="{DynamicResource copy}"/>
+                                    <Border Height="2"/>
+                                    <Button Style="{DynamicResource btnAction}" Content="Cortar" Tag="{DynamicResource cut}"/>
+                                    <Border Height="2"/>
+                                    <Button Style="{DynamicResource btnAction}" Content="Pegar" Tag="{DynamicResource paste}"/>
+
+                                </StackPanel>
+                            </Grid>
+                           
+                        </Border>
+                       
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="27"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Border Background="#EFEFEF" >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20*" MaxWidth="120"/>
+                                        <ColumnDefinition Width="20*" MaxWidth="120"/>
+                                        <ColumnDefinition Width="20*" MaxWidth="120"/>
+                                        <ColumnDefinition Width="20*" MaxWidth="120"/>
+                                        <ColumnDefinition Width="20*" MaxWidth="120"/>
+
+
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <RadioButton Grid.Column="0" x:Name="btnListProject" Command="{Binding ProjectListNavigation}" Content="Lista" Style="{DynamicResource ListRadioButtonStyle}" Tag="{DynamicResource list}" 
+                                        Margin="2 0 0 0" IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModels:ProjectListViewModel}}"/>
+
+                                    <RadioButton Grid.Column="1"  x:Name="btnAddProject" Command="{Binding ProjectCreateNavigation}"  Content="Agregar" Style="{DynamicResource AddRadioButtonStyle}" Tag="{DynamicResource add}" 
+                                        Margin="2 0 0 0"  IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModels:ProjectCreateViewModel}}"/>
+
+                                    <RadioButton Grid.Column="2"  x:Name="btnEditProject" Command="{Binding ProjectEditNavigation}" Content="Editar" Style="{DynamicResource EditRadioButtonStyle}" Tag="{DynamicResource edit}"
+                                        Margin="2 0 0 0"  IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModels:ProjectEditViewModel}}"/>
+
+                                    <RadioButton Grid.Column="3"  x:Name="btnDeleteProject" Command="{Binding ProjectDeleteNavigation}" Content="Editar" Style="{DynamicResource DeleteRadioButtonStyle}" Tag="{DynamicResource delete}"
+                                        Margin="2 0 0 0"  IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModels:ProjectDeleteViewModel}}"/>
+
+
+                                    <RadioButton Grid.Column="4" x:Name="btnPrintProject" Content="Imprimir" Style="{DynamicResource OptionRadioButtonStyle}" Tag="{DynamicResource print}" 
+                                                  Margin="2 0 0 0" />
+
+                                </Grid>
+                            </Border>
+
+                            <ContentControl Grid.Row="1"  Content="{Binding CurrentViewModel}">
+                            </ContentControl>
+                        </Grid>
+                        
+                        
+                    </Grid>
+
+
+                </Grid>
+                
+                
+            </Border>
+
+
+            <Border  x:Name="BudgetSpace" Grid.Row="1" Margin="0 0 6 6" Background="#FFFFFF" CornerRadius="5">
+
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsChecked, ElementName=btnListProject}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
+                <Grid Grid.Column="1" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Border  Background="#3d3d3d" CornerRadius="5,5,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Height="16" Margin="10 0 10 3">
+                                <Path Data="{DynamicResource budget}" Fill="#ffffff"/>
+                            </Viewbox>
+                            <TextBlock FontSize="12" Text="Sub-Presupuestos" Style="{DynamicResource lblMainTitle}"/>
+                        </StackPanel>
+
+                    </Border>
+
+                    <Grid Grid.Row="1" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Background="#C2C2C2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" MaxHeight="20" MinHeight="20"/>
+                                    <RowDefinition/>
+
+                                </Grid.RowDefinitions>
+
+
+                                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="4">
+
+
+                                    <Button Background="#baf8cb" Foreground="#135428" Style="{DynamicResource btnAction}" Content="Subir" Tag="{DynamicResource up}"/>
+                                    <Border Height="2"/>
+                                    <Button Background="#baf8cb" Foreground="#135428"  Style="{DynamicResource btnAction}" Content="Bajar" Tag="{DynamicResource down}"/>
+                                    <Border Height="4"/>
+
+                                    <Button Style="{DynamicResource btnAction}" Content="Copiar" Tag="{DynamicResource copy}"/>
+                                    <Border Height="2"/>
+                                    <Button Style="{DynamicResource btnAction}" Content="Pegar" Tag="{DynamicResource paste}"/>
+
+                                </StackPanel>
+                            </Grid>
+
+                        </Border>
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="27"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Border Background="#EFEFEF" >
+
+                                <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30*" MaxWidth="120"/>
+                                    <ColumnDefinition Width="30*" MaxWidth="120"/>
+                                    <ColumnDefinition Width="30*" MaxWidth="120"/>
+                                </Grid.ColumnDefinitions>
+                                    <Button Command="{Binding SubCreateNavigation}"  Margin="2 0 0 0" Grid.Column="0" Style="{DynamicResource btnAdd}" Content="Agregar" Tag="{DynamicResource add}"/>
+                                    <Button Command="{Binding SubEditNavigation}"  Margin="2 0 0 0" Grid.Column="1" Style="{DynamicResource btnEdit}" Content="Editar" Tag="{DynamicResource edit}"/>
+                                    <Button Command="{Binding SubDeleteNavigation}"  Margin="2 0 0 0" Grid.Column="2" Style="{DynamicResource btnDelete}" Content="Eliminar" Tag="{DynamicResource list}"/>
+
+                                </Grid>
+                                
+                                </Border>
+
+                        </Grid>
+                    
+                    </Grid>
+
+                </Grid>
+
+
+            </Border>
+        </Grid>
+        
+       
+
+            
+
+        
+
+
+    </Grid>
+</UserControl>

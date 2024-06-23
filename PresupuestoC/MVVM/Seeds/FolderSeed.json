@@ -1,0 +1,18 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Todos los presupuestos",
+    "Type": 1,
+    "ParentId": null,
+    "Selected": true,
+    "Expanded": null
+  },
+  {
+    "Id": 2,
+    "Name": "Carpeta principal",
+    "Type": 2,
+    "ParentId": null,
+    "Selected": null,
+    "Expanded": true
+  }
+]

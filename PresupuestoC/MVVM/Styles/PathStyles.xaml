@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style x:Key="FolderIconStyle" TargetType="Path">
+        <Setter Property="Data" Value="{DynamicResource folderClose}"/>
+        <Setter Property="Fill" Value="#FFE643"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=IsSelected}" Value="True">
+                <Setter Property="Data" Value="{DynamicResource folderOpen}"/>
+                <Setter Property="Fill" Value="#61dfff"/>
+            </DataTrigger>
+            
+            <DataTrigger Binding="{Binding Type}" Value="1">
+                <Setter Property="Data" Value="{DynamicResource computer}"/>
+                <Setter Property="Fill" Value="#2F699A"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="2">
+                <Setter Property="Data" Value="{DynamicResource stack}"/>
+                <Setter Property="Fill" Value="#A62F2F"/>
+            </DataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Type}" Value="1"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=IsSelected}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Fill" Value="#61dfff"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Type}" Value="2"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=IsSelected}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Fill" Value="#61dfff"/>
+            </MultiDataTrigger>
+        </Style.Triggers>
+        
+    </Style>
+
+
+    <Style x:Key="archiveIcon" TargetType="Path">
+        <Setter Property="Fill" Value="#000000"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=DataGridRow}}" Value="True">
+                <Setter Property="Fill" Value="#FFFFFF"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+</ResourceDictionary>

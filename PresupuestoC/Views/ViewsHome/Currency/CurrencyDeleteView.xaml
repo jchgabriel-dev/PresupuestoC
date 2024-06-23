@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="PresupuestoC.Views.Currency.CurrencyDeleteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresupuestoC.Views.Currency"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="20 10" VerticalAlignment="Top">
+            <TextBlock Text="Eliminar moneda" Style="{DynamicResource lblFormTitle}"/>
+
+            <Border Height="10"/>
+            <Rectangle Fill="#000000" Height="2" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Border Height="10"/>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock Text="¿Estas seguro que deseas eliminar la siguiente moneda?" FontWeight="SemiBold"/>
+                <Border Height="3"/>
+                <TextBlock MaxWidth="300" HorizontalAlignment="Center" Text="{Binding Description}" TextWrapping="Wrap" Foreground="Red"/>
+                <Border Height="7"/>
+            </StackPanel>
+            
+
+
+            <TextBlock Text="Ingresa 'SI' para continuar" />
+            <Border Height="3"/>
+
+            <TextBox Text="{Binding Confirmation,  UpdateSourceTrigger=PropertyChanged}" Padding="5 2" Style="{DynamicResource deleteForm}"/>
+            <Border Height="5"/>
+
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+
+
+                    <ColumnDefinition Width="50*" MaxWidth="140"/>
+                    <ColumnDefinition Width="50*" MaxWidth="140"/>
+                    <ColumnDefinition MaxWidth="0"/>
+
+
+                </Grid.ColumnDefinitions>
+                <Button IsEnabled="{Binding CanDelete}" Command="{Binding DeleteCurrency}" Grid.Column="2" Content="Eliminar" Style="{DynamicResource btnMain}" Tag="{DynamicResource delete}"/>
+                <Button Command="{Binding Cancel}" Grid.Column="3" Content="Cancelar" Style="{DynamicResource btnSecondary}" Tag="{DynamicResource cancel}"/>
+            </Grid>
+            
+        </StackPanel>
+    </Grid>
+</UserControl>

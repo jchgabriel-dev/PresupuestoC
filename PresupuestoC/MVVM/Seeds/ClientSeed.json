@@ -1,0 +1,13 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Cliente predeterminado",
+    "Address": "Direccion predeterminada"
+  },
+  {
+    "Id": 2,
+    "Name": "Importado de Excel",
+    "Address": "Archivo Excel"
+
+  }
+]

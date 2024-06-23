@@ -1,0 +1,195 @@
+﻿<UserControl x:Class="PresupuestoC.Views.Location.LocationRegisterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresupuestoC.Views.Location"
+             mc:Ignorable="d" 
+                                    
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="20 10" VerticalAlignment="Top">
+            <TextBlock Text="Buscar registro" Style="{DynamicResource lblFormTitle}"/>
+
+            <Border Height="10"/>
+            <Rectangle Fill="#000000" Height="2" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Border Height="10"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid  Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="*" MaxWidth="370"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Padding="0 0" Text="Region : "  Style="{DynamicResource lblForm}" />
+                    
+                    <Grid  Grid.Column="1">
+                        <ComboBox x:Name="RegionFilter"  SelectedItem="{Binding ProvinceFilterRegion, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Regions}" DisplayMemberPath="Name" Padding="8 2" Style="{DynamicResource comboForm}"/>
+
+                        <TextBlock FontSize="11" IsHitTestVisible="False" Text="Seleccionar region" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="16 0 0 3" Foreground="#6d6d6d">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedIndex, ElementName=RegionFilter}" Value="-1">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+                    
+                </Grid>
+                
+                <Grid Grid.Row="1" Margin="10 5 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="30*" MaxWidth="120"/>
+                        <ColumnDefinition Width="30*" MaxWidth="120"/>
+                        <ColumnDefinition Width="30*" MaxWidth="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Command="{Binding RegionCreateNavigation}"  Margin="0 0 5 0" Style="{DynamicResource btnAdd}" Content="Agregar"  Grid.Column="1"/>
+                    <Button IsEnabled="{Binding IsRegionSelected}" Command="{Binding RegionEditNavigation}" Margin="0 0 5 0" Style="{DynamicResource btnEdit}" Content="Editar" Grid.Column="2"/>
+                    <Button IsEnabled="{Binding IsRegionSelected}" Command="{Binding RegionDeleteNavigation}" Margin="0 0 5 0" Style="{DynamicResource btnDelete}" Content="Eliminar" Grid.Column="3"/>
+
+                </Grid>
+               
+                
+            </Grid>
+
+
+            <Border Height="15"/>
+            <Rectangle Fill="#000000" Height="0.5" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Border Height="15"/>
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="*" MaxWidth="370"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Padding="0 0" Text="Provincia : "  Style="{DynamicResource lblForm}" />
+
+                    <Grid  Grid.Column="1">
+                        <ComboBox x:Name="ProvinceFilter" SelectedItem="{Binding DistrictFilterProvince, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ProvinceCollection}" DisplayMemberPath="Name" Padding="8 2" Grid.Column="1" Style="{DynamicResource comboForm}"/>
+
+                        <TextBlock FontSize="11" IsHitTestVisible="False" Text="Seleccionar provincia" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="16 0 0 3" Foreground="#6d6d6d">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedIndex, ElementName=ProvinceFilter}" Value="-1">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+                    
+
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="10 5 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="30*" MaxWidth="120"/>
+                        <ColumnDefinition Width="30*" MaxWidth="120"/>
+                        <ColumnDefinition Width="30*" MaxWidth="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Command="{Binding ProvinceCreateNavigation}" Margin="0 0 5 0" Style="{DynamicResource btnAdd}" Content="Agregar"  Grid.Column="1"/>
+                    <Button IsEnabled="{Binding IsProvinceSelected}" Command="{Binding ProvinceEditNavigation}" Margin="0 0 5 0" Style="{DynamicResource btnEdit}" Content="Editar" Grid.Column="2"/>
+                    <Button IsEnabled="{Binding IsProvinceSelected}" Command="{Binding ProvinceDeleteNavigation}" Margin="0 0 5 0" Style="{DynamicResource btnDelete}" Content="Eliminar" Grid.Column="3"/>
+
+                </Grid>
+                
+
+                
+            </Grid>
+
+            <Border Height="15"/>
+            <Rectangle Fill="#000000" Height="0.5" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <Border Height="15"/>
+
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="*" MaxWidth="370"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Distrito : "  Style="{DynamicResource lblForm}"/>
+                    <Grid  Grid.Column="1">
+                        <ComboBox x:Name="DistrictFilter" SelectedItem="{Binding District, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding DistrictCollection}" DisplayMemberPath="Name" Padding="8 2" Grid.Column="1" Style="{DynamicResource comboForm}"/>
+
+                        <TextBlock FontSize="11" IsHitTestVisible="False" Text="Seleccionar distrito" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="16 0 0 3" Foreground="#6d6d6d">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedIndex, ElementName=DistrictFilter}" Value="-1">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+                </Grid>
+
+
+                <Grid Grid.Row="1" Margin="10 5 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="30*" MaxWidth="120"/>
+                        <ColumnDefinition Width="30*" MaxWidth="120"/>
+                        <ColumnDefinition Width="30*" MaxWidth="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Command="{Binding DistrictCreateNavigation}" Margin="0 0 5 0" Style="{DynamicResource btnAdd}" Content="Agregar"  Grid.Column="1"/>
+                    <Button IsEnabled="{Binding IsDistrictSelected}" Command="{Binding DistrictEditNavigation}" Margin="0 0 5 0" Style="{DynamicResource btnEdit}" Content="Editar" Grid.Column="2"/>
+                    <Button IsEnabled="{Binding IsDistrictSelected}" Command="{Binding DistrictDeleteNavigation}" Margin="0 0 5 0" Style="{DynamicResource btnDelete}" Content="Eliminar" Grid.Column="3"/>
+
+                </Grid>
+
+                
+
+            </Grid>
+            <Border Height="15"/>
+
+
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+
+
+                    <ColumnDefinition Width="40*" MaxWidth="140"/>
+                    <ColumnDefinition Width="50*" MaxWidth="140"/>
+                    <ColumnDefinition MaxWidth="0"/>
+
+
+                </Grid.ColumnDefinitions>
+                <Button IsEnabled="{Binding CanCreate}" Command="{Binding CreateDistrict}" Grid.Column="2" Content="Agregar" Style="{DynamicResource btnMain}" Tag="{DynamicResource add}"/>
+                <Button Command="{Binding Cancel}"  Grid.Column="3" Content="Cancelar" Style="{DynamicResource btnSecondary}" Tag="{DynamicResource cancel}"/>
+            </Grid>
+
+
+        </StackPanel>
+    </Grid>
+</UserControl>

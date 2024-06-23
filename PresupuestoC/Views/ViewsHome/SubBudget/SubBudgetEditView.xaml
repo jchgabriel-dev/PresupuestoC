@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="PresupuestoC.Views.SubBudget.SubBudgetEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresupuestoC.Views.SubBudget"
+             mc:Ignorable="d" 
+              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+              xmlns:order="clr-namespace:PresupuestoC.MVVM.Converters"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.Resources>
+            <order:BehaviorTextBox x:Key="behaviorTextBox"/>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border Background="#000000" Height="27" >
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Crear sub-presupuesto" Foreground="#ffffff" 
+          FontSize="13" FontWeight="SemiBold" Padding="10 0" VerticalAlignment="Center"/>
+                <Button Grid.Column="1" Style="{DynamicResource btnClose}" Tag="{DynamicResource close}"
+                  Command="{Binding CloseModal}"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Margin="5 10 5 10" >
+            <StackPanel Orientation="Vertical">
+                <Border Width="500" Height="5"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*" MaxWidth="345"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Descripcion : "  Style="{DynamicResource lblForm}"/>
+                    <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"  Padding="5 2" Grid.Column="1" Style="{DynamicResource boxForm}" />
+                    <Button  Command="{Binding NameUpper}" Grid.Column="2" Style="{DynamicResource btnForm}" Tag="{DynamicResource mayus}" VerticalAlignment="Top"/>
+
+                </Grid>
+
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="particularWork" IsChecked="{Binding ActiveWork, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Content="Jornada laboral particular" Style="{DynamicResource checkForm}"/>
+                </Grid>
+
+
+                <Grid>
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsChecked, ElementName=particularWork}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border Height="10"/>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*" MaxWidth="200"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Jornada laboral : "  Style="{DynamicResource lblForm}"/>
+                        <TextBox Text="{Binding Work, UpdateSourceTrigger=PropertyChanged}" Padding="5 2"  Grid.Column="1" Style="{DynamicResource boxForm}">
+                            <b:Interaction.Behaviors>
+                                <order:BehaviorTextBox RegularExpression="^[0-9]+$" MaxLength="10"/>
+                            </b:Interaction.Behaviors>
+                        </TextBox>
+
+                    </Grid>
+
+
+                </Grid>
+                <Border Height="10"/>
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="50*"  MaxWidth="130"/>
+                        <ColumnDefinition Width="50*"  MaxWidth="130"/>
+                    </Grid.ColumnDefinitions>
+                    <Button IsEnabled="{Binding CanCreate}" Command="{Binding CreateFolder}" Content="Agregar" Tag="{DynamicResource add}" Grid.Column="1" Style="{DynamicResource btnMain}"/>
+                    <Button Content="Cancelar" Tag="{DynamicResource cancel}" Grid.Column="2" 
+                     Style="{DynamicResource btnSecondary}"  Command="{Binding CloseModal}"/>
+                </Grid>
+
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>

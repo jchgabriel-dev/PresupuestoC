@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="PresupuestoC.Views.Main.HomeView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PresupuestoC.Views.Main"
+      mc:Ignorable="d" 
+      xmlns:viewModels="clr-namespace:PresupuestoC.ViewModels.Home2"
+      xmlns:views="clr-namespace:PresupuestoC.Views.Home2"     
+        xmlns:order="clr-namespace:PresupuestoC.MVVM"
+      d:DesignHeight="450" d:DesignWidth="800">
+      
+
+    <Grid Background="#ffffff">
+        <Grid.Resources>
+            <order:ConverterViewModel x:Key="converterViewModel"/>
+
+            
+            <DataTemplate DataType="{x:Type TypeName=viewModels:ArchivesViewModel}">
+                <views:ArchivesView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModels:ProjectViewModel}">
+                <views:ProjectView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModels:SettingsViewModel}">
+                <views:SettingsView/>
+            </DataTemplate>
+
+        </Grid.Resources>
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="#000000">
+            <Grid x:Name="gridMenu" Width="60">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                   
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+
+                <ToggleButton Style="{DynamicResource btnToogle}" x:Name="btnMenu"  HorizontalAlignment="Right" 
+                                  BorderThickness="0" Background="Transparent" VerticalAlignment="Center"  Margin="0 0 15 0">                    
+                    <ToggleButton.Triggers>
+                        <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                            <BeginStoryboard>
+                                <Storyboard x:Name="HideStackPanel">
+                                    <DoubleAnimation Storyboard.TargetName="gridMenu" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="200" To="60" Duration="0:0:0.3">
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    
+                        <EventTrigger RoutedEvent="ToggleButton.Checked">
+                            <BeginStoryboard>
+                                <Storyboard x:Name="ShowStackPanel">
+                                    <DoubleAnimation Storyboard.TargetName="gridMenu" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="60" To="200" Duration="0:0:0.3">
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ToggleButton.Triggers>
+                </ToggleButton>
+
+
+                <StackPanel Grid.Row="1">
+                    <RadioButton Command="{Binding ProjectNavigation}" x:Name="rdInicio" Content="Inicio" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource home}" 
+                                 IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModels:ProjectViewModel}}" IsEnabled="{Binding IsSelected}" />
+                    <RadioButton Command="{Binding ArchivesNavigation}" x:Name="rdArchivos" Content="Archivos" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource database}" Margin="0 5 0 5" 
+                                 IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModels:ArchivesViewModel}}"/>
+                    <RadioButton Command="{Binding SettingsNavigation}" x:Name="rdConfiguracion" Content="Configuracion" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource settings}" Margin="0 5 0 5" 
+                                 IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModels:SettingsViewModel}}"/>
+                </StackPanel>
+
+
+
+
+            </Grid>
+        </Border>
+
+        <ContentControl Grid.Column="2" Content="{Binding CurrentViewModel}" />
+
+
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,106 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <Style x:Key="dataForm" TargetType="{x:Type DataGrid}">
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="ColumnHeaderStyle" Value="{DynamicResource dataHeader}"/>
+        <Setter Property="CellStyle" Value="{DynamicResource dataCell}"/>
+        <Setter Property="RowStyle" Value="{DynamicResource dataRow}"/>
+        <Setter Property="CanUserResizeColumns" Value="False"/>
+        <Setter Property="RowHeaderWidth" Value="0"/>
+        <Setter Property="CanUserResizeRows" Value="False"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#000000"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="SelectionUnit" Value="FullRow"/>
+    </Style>
+
+
+
+    <Style x:Key="dataHeader" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Background" Value="#000000"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>        
+    </Style>
+
+    <Style x:Key="dataCell" TargetType="{x:Type DataGridCell}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Height" Value="19"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{x:Static SystemColors.HighlightBrush}"/>
+                <Setter Property="Foreground" Value="#ffffff"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="dataRow" TargetType="{x:Type DataGridRow}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#dcdcdc"/>
+                <Setter Property="Foreground" Value="#000000"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    
+
+    
+    
+
+    <Style x:Key="archiveTable" TargetType="{x:Type DataGrid}">
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="ColumnHeaderStyle" Value="{DynamicResource archiveHeader}"/>
+        <Setter Property="CellStyle" Value="{DynamicResource archiveCell}"/>
+        <Setter Property="RowStyle" Value="{DynamicResource archiveRow}"/>
+        <Setter Property="CanUserResizeColumns" Value="False"/>
+        <Setter Property="RowHeaderWidth" Value="0"/>
+        <Setter Property="CanUserResizeRows" Value="False"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="#ffffff"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="SelectionUnit" Value="FullRow"/>
+        <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+    </Style>
+
+    <Style x:Key="archiveHeader" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Background" Value="#7c7c7c"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Padding" Value="5 0"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0 0 0 0"/>
+    </Style>
+
+    <Style x:Key="archiveCell" TargetType="{x:Type DataGridCell}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{x:Static SystemColors.HighlightBrush}"/>
+                <Setter Property="Foreground" Value="#ffffff"/>
+            </Trigger>
+            
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="archiveRow" TargetType="{x:Type DataGridRow}">
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#dcdcdc"/>
+                <Setter Property="Foreground" Value="#000000"/>
+            </Trigger>
+
+        </Style.Triggers>
+
+    </Style>
+
+
+
+</ResourceDictionary>

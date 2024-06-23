@@ -1,0 +1,85 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="MVVM\Seeds\ClientSeed.json" />
+    <None Remove="MVVM\Seeds\CurrencySeed.json" />
+    <None Remove="MVVM\Seeds\DistrictSeed.json" />
+    <None Remove="MVVM\Seeds\FolderSeed.json" />
+    <None Remove="MVVM\Seeds\ProvinceSeed.json" />
+    <None Remove="MVVM\Seeds\RegionSeed.json" />
+    <None Remove="MVVM\Seeds\StateSeed.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="MVVM\Seeds\ClientSeed.json" />
+    <EmbeddedResource Include="MVVM\Seeds\CurrencySeed.json" />
+    <EmbeddedResource Include="MVVM\Seeds\DistrictSeed.json" />
+    <EmbeddedResource Include="MVVM\Seeds\FolderSeed.json" />
+    <EmbeddedResource Include="MVVM\Seeds\ProvinceSeed.json" />
+    <EmbeddedResource Include="MVVM\Seeds\RegionSeed.json" />
+    <EmbeddedResource Include="MVVM\Seeds\StateSeed.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ViewsHome\Location\District\LocationCreateDistrictView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ViewsHome\Location\District\LocationDeleteDistrictView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ViewsHome\Location\District\LocationEditDistrictView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ViewsHome\Location\Province\LocationCreateProvinceView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ViewsHome\Location\Province\LocationDeleteProvinceView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ViewsHome\Location\Province\LocationEditProvinceView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+    <PackageReference Include="SimpleModal.WPF" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Command\Home\SubBudget\" />
+    <Folder Include="Command\Budget\" />
+    <Folder Include="Navigation\NavigationBudget\Certificate\" />
+    <Folder Include="Navigation\NavigationBudget\Measure\" />
+    <Folder Include="Navigation\NavigationBudget\Heriarchy\" />
+    <Folder Include="Navigation\NavigationBudget\" />
+    <Folder Include="Navigation\NavigationBudget\Title\" />
+    <Folder Include="ViewModels\ViewModelsBudget\" />
+    <Folder Include="Views\ViewsBudget\" />
+  </ItemGroup>
+
+</Project>

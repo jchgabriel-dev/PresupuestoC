@@ -1,0 +1,42 @@
+﻿<Application x:Class="PresupuestoC.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+
+             >
+
+
+
+
+    <Application.Resources>
+
+        <ResourceDictionary>
+            
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="MVVM/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="MVVM/Styles/IconStyles.xaml"/>
+                <ResourceDictionary Source="MVVM/Styles/ListStyles.xaml"/>
+                <ResourceDictionary Source="MVVM/Styles/LabelStyles.xaml"/>
+                <ResourceDictionary Source="MVVM/Styles/ElementStyles.xaml"/>
+                <ResourceDictionary Source="MVVM/Styles/CheckStyles.xaml"/>
+                <ResourceDictionary Source="MVVM/Styles/BoxStyles.xaml"/>
+                <ResourceDictionary Source="MVVM/Styles/TableStyles.xaml"/>
+                <ResourceDictionary Source="MVVM/Styles/ComboStyles.xaml"/>
+                <ResourceDictionary Source="MVVM/Styles/TreeStyles.xaml"/>
+                <ResourceDictionary Source="MVVM/Styles/PathStyles.xaml"/>
+
+
+
+
+            </ResourceDictionary.MergedDictionaries>
+
+
+        </ResourceDictionary>
+        
+
+
+
+
+    </Application.Resources>
+</Application>

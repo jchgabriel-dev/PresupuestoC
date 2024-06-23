@@ -1,0 +1,143 @@
+﻿<Window x:Class="PresupuestoC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresupuestoC"
+        mc:Ignorable="d"
+        Title="Presupuesto" Height="400" Width="800"   
+        
+        xmlns:viewModels="clr-namespace:PresupuestoC.ViewModels.Main"
+        xmlns:views="clr-namespace:PresupuestoC.Views.Main"    
+
+        xmlns:viewModelsHome="clr-namespace:PresupuestoC.ViewModels.Home2"
+        xmlns:viewsHome="clr-namespace:PresupuestoC.Views.Home2"    
+        
+        xmlns:viewModelsFolder="clr-namespace:PresupuestoC.ViewModels.Folder"
+        xmlns:viewsFolder="clr-namespace:PresupuestoC.Views.Folder"   
+        
+         xmlns:viewModelsRegion="clr-namespace:PresupuestoC.ViewModels.Location.Region"
+         xmlns:viewsRegion="clr-namespace:PresupuestoC.Views.Location.Region"
+ 
+         xmlns:viewModelsProvince="clr-namespace:PresupuestoC.ViewModels.Location.Province"
+         xmlns:viewsProvince="clr-namespace:PresupuestoC.Views.Location.Province"
+ 
+         xmlns:viewModelsDistrict="clr-namespace:PresupuestoC.ViewModels.Location.District"
+         xmlns:viewsDistrict="clr-namespace:PresupuestoC.Views.Location.District"
+        
+        xmlns:viewModelsSub="clr-namespace:PresupuestoC.ViewModels.SubBudget"
+        xmlns:viewsSub="clr-namespace:PresupuestoC.Views.SubBudget"
+        
+        
+        xmlns:modalcontrol="clr-namespace:ModalControl;assembly=ModalControl">
+
+    <Grid Background="#ffffff">
+
+        <Grid.Resources>
+            
+            <!-- MAIN -->
+                        
+            <DataTemplate DataType="{x:Type TypeName=viewModels:HomeViewModel}">
+                <views:HomeView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModels:BudgetViewModel}">
+                <views:BudgetView/>
+            </DataTemplate>
+            
+            <!-- PROJECT -->
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsHome:CurrencyViewModel}">
+                <viewsHome:CurrencyView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsHome:ClientViewModel}">
+                <viewsHome:ClientView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsHome:LocationViewModel}">
+                <viewsHome:LocationView/>
+            </DataTemplate>
+            
+            <!-- FOLDER -->
+            <DataTemplate DataType="{x:Type TypeName=viewModelsFolder:FolderCreateViewModel}">
+                <viewsFolder:FolderCreateView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsFolder:FolderEditViewModel}">
+                <viewsFolder:FolderEditView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsFolder:FolderDeleteViewModel}">
+                <viewsFolder:FolderDeleteView/>
+            </DataTemplate>
+            
+            <!-- SUPER MODAL -->
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsRegion:LocationCreateRegionViewModel}">
+                <viewsRegion:LocationCreateRegionView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsRegion:LocationEditRegionViewModel}">
+                <viewsRegion:LocationEditRegionView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsRegion:LocationDeleteRegionViewModel}">
+                <viewsRegion:LocationDeleteRegionView/>
+            </DataTemplate>
+
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsProvince:LocationCreateProvinceViewModel}">
+                <viewsProvince:LocationCreateProvinceView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsProvince:LocationEditProvinceViewModel}">
+                <viewsProvince:LocationEditProvinceView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsProvince:LocationDeleteProvinceViewModel}">
+                <viewsProvince:LocationDeleteProvinceView/>
+            </DataTemplate>
+
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsDistrict:LocationCreateDistrictViewModel}">
+                <viewsDistrict:LocationCreateDistrictView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsDistrict:LocationEditDistrictViewModel}">
+                <viewsDistrict:LocationEditDistrictView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsDistrict:LocationDeleteDistrictViewModel}">
+                <viewsDistrict:LocationDeleteDistrictView/>
+            </DataTemplate>
+            
+            <!-- SUBBUDGETS-->
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsSub:SubBudgetCreateViewModel}">
+                <viewsSub:SubBudgetCreateView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsSub:SubBudgetEditViewModel}">
+                <viewsSub:SubBudgetEditView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsSub:SubBudgetDeleteViewModel}">
+                <viewsSub:SubBudgetDeleteView/>
+            </DataTemplate>
+
+        </Grid.Resources>
+
+        <ContentControl Content="{Binding CurrentViewModel}" />
+
+        <modalcontrol:Modal  Panel.ZIndex="1" IsOpen="{Binding IsOpen}" >
+            <ContentControl Content="{Binding CurrentModalViewModel}" />
+        </modalcontrol:Modal>
+
+        <modalcontrol:Modal  Panel.ZIndex="2" IsOpen="{Binding IsSuperOpen}" >
+            <ContentControl Content="{Binding CurrentSuperModalViewModel}" />
+        </modalcontrol:Modal>
+        
+    </Grid>
+    
+</Window>

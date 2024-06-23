@@ -1,0 +1,98 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "LIMA"
+  },
+  {
+    "Id": 2,
+    "Name": "AMAZONAS"
+  },
+  {
+    "Id": 3,
+    "Name": "APURIMAC"
+  },
+  {
+    "Id": 4,
+    "Name": "AREQUIPA"
+  },
+  {
+    "Id": 5,
+    "Name": "AYACUCHO"
+  },
+  {
+    "Id": 6,
+    "Name": "CAJAMARCA"
+  },
+  {
+    "Id": 7,
+    "Name": "CUSCO"
+  },
+  {
+    "Id": 8,
+    "Name": "HUANCAVELICA"
+  },
+  {
+    "Id": 9,
+    "Name": "HUANUCO"
+  },
+  {
+    "Id": 10,
+    "Name": "ICA"
+  },
+  {
+    "Id": 11,
+    "Name": "JUNIN"
+  },
+  {
+    "Id": 12,
+    "Name": "LA LIBERTAD"
+  },
+  {
+    "Id": 13,
+    "Name": "LAMBAYEQUE"
+  },
+  {
+    "Id": 14,
+    "Name": "LORETO"
+  },
+  {
+    "Id": 15,
+    "Name": "MADRE DE DIOS"
+  },
+  {
+    "Id": 16,
+    "Name": "MOQUEGUA"
+  },
+  {
+    "Id": 17,
+    "Name": "PASCO"
+  },
+  {
+    "Id": 18,
+    "Name": "PIURA"
+  },
+  {
+    "Id": 19,
+    "Name": "PUNO"
+  },
+  {
+    "Id": 20,
+    "Name": "SAN MARTIN"
+  },
+  {
+    "Id": 21,
+    "Name": "TACNA"
+  },
+  {
+    "Id": 22,
+    "Name": "TUMBES"
+  },
+  {
+    "Id": 23,
+    "Name": "UCAYALI"
+  },
+  {
+    "Id": 24,
+    "Name": "ANCASH"
+  }
+]
