@@ -8,6 +8,7 @@ using PresupuestoC.Navigation.Home2;
 using PresupuestoC.Navigation.Location;
 using PresupuestoC.Navigation.Main;
 using PresupuestoC.Navigation.Modal;
+using PresupuestoC.Navigation.NavigationBudget.Heriarchy;
 using PresupuestoC.Navigation.Project;
 using PresupuestoC.Navigation.SuperModal;
 using PresupuestoC.Stores;
@@ -17,6 +18,7 @@ using PresupuestoC.Stores.Currency;
 using PresupuestoC.Stores.Folder;
 using PresupuestoC.Stores.Location;
 using PresupuestoC.Stores.Project;
+using PresupuestoC.Stores.SubBudget;
 using PresupuestoC.ViewModels.Budget;
 using PresupuestoC.ViewModels.Client;
 using PresupuestoC.ViewModels.Currency;
@@ -29,6 +31,7 @@ using PresupuestoC.ViewModels.Location.Region;
 using PresupuestoC.ViewModels.Main;
 using PresupuestoC.ViewModels.Project;
 using PresupuestoC.ViewModels.SubBudget;
+using PresupuestoC.ViewModels.ViewModelsBudget.Heriarchy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +52,7 @@ namespace PresupuestoC.HostBuilders
                 services.AddSingleton<Func<HomeViewModel>>((s) => () => s.GetRequiredService<HomeViewModel>());
                 services.AddSingleton<NavigationService<HomeViewModel>>();
 
-                services.AddTransient<BudgetViewModel>();
+                services.AddTransient((s) => createBudgetViewModel(s));
                 services.AddSingleton<Func<BudgetViewModel>>((s) => () => s.GetRequiredService<BudgetViewModel>());
                 services.AddSingleton<NavigationService<BudgetViewModel>>();
 
@@ -232,10 +235,35 @@ namespace PresupuestoC.HostBuilders
                 services.AddSingleton<Func<SubBudgetDeleteViewModel>>((s) => () => s.GetRequiredService<SubBudgetDeleteViewModel>());
                 services.AddSingleton<ModalNavigationService<SubBudgetDeleteViewModel>>();
 
+                // HERIARCHY
+
+                services.AddTransient<LevelViewModel>();
+                services.AddSingleton<Func<LevelViewModel>>((s) => () => s.GetRequiredService<LevelViewModel>());
+                services.AddSingleton<HeriarchyNavigationService<LevelViewModel>>();
+
+                services.AddTransient<TitleViewModel>();
+                services.AddSingleton<Func<TitleViewModel>>((s) => () => s.GetRequiredService<TitleViewModel>());
+                services.AddSingleton<HeriarchyNavigationService<TitleViewModel>>();
+
+                services.AddTransient<CertificateViewModel>();
+                services.AddSingleton<Func<CertificateViewModel>>((s) => () => s.GetRequiredService<CertificateViewModel>());
+                services.AddSingleton<HeriarchyNavigationService<CertificateViewModel>>();
+
 
             });
 
             return hostBuilder;
+        }
+
+        private static BudgetViewModel createBudgetViewModel(IServiceProvider s)
+        {
+            return BudgetViewModel.LoadViewModel(s.GetRequiredService<BudgetNavigationStore>(),
+                s.GetRequiredService<NavigationService<HomeViewModel>>(),
+                s.GetRequiredService<BudgetNavigationService<HierarchyViewModel>>(),
+                s.GetRequiredService<BudgetNavigationService<PolyViewModel>>(),
+                s.GetRequiredService<BudgetNavigationService<ProgramViewModel>>(),
+                s.GetRequiredService<ProjectSelectedStore>(),
+                s.GetRequiredService<SubBudgetListStore>());
         }
 
         private static CurrencyListViewModel createCurrencyListViewModel(IServiceProvider s)
@@ -260,7 +288,8 @@ namespace PresupuestoC.HostBuilders
                 s.GetRequiredService<ArchiveSelectedStore>(),                
                 s.GetRequiredService<ArchiveTemporalStore>(),
                 s.GetRequiredService<FolderListStore>(),
-                s.GetRequiredService<ProjectListStore>());        
+                s.GetRequiredService<ProjectListStore>(),
+                s.GetRequiredService<SubBudgetListStore>());        
         }
 
 
@@ -268,7 +297,9 @@ namespace PresupuestoC.HostBuilders
         {
             return ProjectListViewModel.LoadViewModel(s.GetRequiredService<ProjectListStore>(),
                 s.GetRequiredService<ProjectSelectedStore>(),
-                s.GetRequiredService<NavigationService<BudgetViewModel>>());
+                s.GetRequiredService<NavigationService<BudgetViewModel>>(),
+                s.GetRequiredService<FolderSelectedStore>(),
+                s.GetRequiredService<SubBudgetListStore>());            
         }
 
 
@@ -291,7 +322,10 @@ namespace PresupuestoC.HostBuilders
                 s.GetRequiredService<ModalNavigationService<SubBudgetDeleteViewModel>>(),
 
                 s.GetRequiredService<FolderListStore>(),
-                s.GetRequiredService<FolderSelectedStore>()
+                s.GetRequiredService<FolderSelectedStore>(),
+                s.GetRequiredService<SubBudgetListStore>(),
+                s.GetRequiredService<SubBudgetSelectedStore>(),
+                s.GetRequiredService<ProjectSelectedStore>()
             );
         }
 

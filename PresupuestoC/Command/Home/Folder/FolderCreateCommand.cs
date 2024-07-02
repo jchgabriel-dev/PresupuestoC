@@ -34,24 +34,29 @@ namespace PresupuestoC.Command.Folder
 
         public async override Task ExecuteAsync(object parameter)
         {
-            _viewModel.Name = _viewModel.Name;
-
-            if (_viewModel.HasErrors)
-            {
-                return;
-            }
-
-            FolderModel folder = new FolderModel();
-            folder.Name = _viewModel.Name;
-            folder.ParentId = _selected.CurrentFolder.Id;
-            folder.Parent = _selected.CurrentFolder;
-            folder.Type = 3;
-
-
+            
             try
             {
-                await _store.CreateFolder(folder);                
+                _viewModel.Name = _viewModel.Name;
+
+                if (_viewModel.HasErrors)
+                {
+                    return;
+                }
+
+                FolderModel folder = new FolderModel();
+                folder.Name = _viewModel.Name;
+                folder.ParentId = _selected.CurrentFolder.Id;
+                folder.Type = 3;
+
+                await _store.CreateFolder(folder, _selected.CurrentFolder);                
                 _navigation.Navigate();
+            }
+
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show("Ya existe una carpeta con dicho nombre", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {

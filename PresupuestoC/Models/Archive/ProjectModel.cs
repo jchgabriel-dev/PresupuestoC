@@ -22,14 +22,14 @@ namespace PresupuestoC.Models.Archive
 
 
 
-        public int LocationId { get; set; }
-        public LocationModel Location { get; set; }
+        public int LocationArchiveId { get; set; }
+        public LocationArchiveModel LocationArchive { get; set; }
 
-        public int MoneyId { get; set; }
-        public MoneyModel Money { get; set; }
+        public int CurrencyArchiveId { get; set; }
+        public CurrencyArchiveModel CurrencyArchive { get; set; }
 
-        public int CustomerId { get; set; }
-        public CustomerModel Customer { get; set; }
+        public int ClientArchiveId { get; set; }
+        public ClientArchiveModel ClientArchive { get; set; }
 
         public int FolderId { get; set; }
         public FolderModel Folder { get; set; }

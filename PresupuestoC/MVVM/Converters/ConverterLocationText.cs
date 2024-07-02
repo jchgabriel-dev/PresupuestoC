@@ -16,7 +16,7 @@ namespace PresupuestoC.MVVM.Converters
         {
             if (value is DistrictModel district)
             {
-                return $"{district.Province.Region.Name} - {district.Province.Name} - {district.Name}";
+                return $"{district.Province?.Region?.Name} - {district.Province?.Name} - {district.Name}";
             }
 
             return string.Empty;

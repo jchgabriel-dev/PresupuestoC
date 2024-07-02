@@ -20,16 +20,15 @@ using PresupuestoC.Navigation.Home2;
 using PresupuestoC.Navigation.Location;
 using PresupuestoC.Navigation.Main;
 using PresupuestoC.Navigation.Modal;
+using PresupuestoC.Navigation.NavigationBudget.Heriarchy;
 using PresupuestoC.Navigation.Project;
 using PresupuestoC.Navigation.SuperModal;
 using PresupuestoC.Services.Archive;
 using PresupuestoC.Services.Client;
 using PresupuestoC.Services.Currency;
-using PresupuestoC.Services.Customer;
 using PresupuestoC.Services.Folder;
 using PresupuestoC.Services.Location;
-using PresupuestoC.Services.Money;
-using PresupuestoC.Services.Position;
+
 using PresupuestoC.Services.Project;
 using PresupuestoC.Services.SubBudget;
 using PresupuestoC.Stores;
@@ -68,9 +67,6 @@ namespace PresupuestoC
                     services.AddSingleton<IArchiveContextFactory, ArchiveContextFactory>();
                     services.AddSingleton<IFolderService, FolderService>();
                     services.AddSingleton<IProjectService, ProjectService>();
-                    services.AddSingleton<ICustomerService, CustomerService>();
-                    services.AddSingleton<IMoneyService, MoneyService>();
-                    services.AddSingleton<IPositionService, PositionService>();
                     services.AddSingleton<ISubBudgetService, SubBudgetService>();
 
 
@@ -96,7 +92,7 @@ namespace PresupuestoC
                     services.AddSingleton<ProjectSelectedStore>();
                     services.AddSingleton<ProjectTemporalStore>();
                     services.AddSingleton<SubBudgetListStore>();
-                    services.AddSingleton<SubBudgetListStore>();
+                    services.AddSingleton<SubBudgetSelectedStore>();
 
 
                     services.AddSingleton<NavigationStore>();
@@ -106,6 +102,8 @@ namespace PresupuestoC
                     services.AddSingleton<CurrencyNavigationStore>();
                     services.AddSingleton<ClientNavigationStore>();
                     services.AddSingleton<LocationNavigationStore>();
+                    services.AddSingleton<HeriarchyNavigationStore>();
+
 
                     services.AddSingleton<ModalNavigationStore>();
                     services.AddSingleton<SuperModalNavigationStore>();

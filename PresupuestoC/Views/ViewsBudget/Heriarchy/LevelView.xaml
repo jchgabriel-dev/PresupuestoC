@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="PresupuestoC.Views.ViewsBudget.Heriarchy.LevelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresupuestoC.Views.ViewsBudget.Heriarchy"
+             mc:Ignorable="d" 
+             xmlns:order="clr-namespace:PresupuestoC.MVVM"
+             xmlns:viewModels="clr-namespace:PresupuestoC.ViewModels.ViewModelsBudget.Heriarchy"
+             xmlns:views="clr-namespace:PresupuestoC.Views.ViewsBudget.Heriarchy"       
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+        <Grid.Resources>
+            <order:ConverterViewModel x:Key="converterViewModel"/>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsClient:ClientListViewModel}">
+                <viewsClient:ClientListView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsClient:ClientCreateViewModel}">
+                <viewsClient:ClientCreateView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsClient:ClientEditViewModel}">
+                <viewsClient:ClientEditView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModelsClient:ClientDeleteViewModel}">
+                <viewsClient:ClientDeleteView/>
+            </DataTemplate>
+
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border Background="#000000">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Viewbox Height="18" Margin="10 0 10 3">
+                        <Path Data="{DynamicResource client}" Fill="#ffffff"/>
+                    </Viewbox>
+                    <TextBlock Text="Clientes" FontSize="14" VerticalAlignment="Center"
+               Foreground="#ffffff"/>
+                </StackPanel>
+                <Button Grid.Column="1" Style="{DynamicResource btnClose}" Tag="{DynamicResource close}"
+            Command="{Binding CloseModal}"/>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+
+            <Grid  Background="#C2C2C2" >
+                <StackPanel Margin="5 0">
+
+                    <Border Height="5"/>
+
+                    <RadioButton x:Name="btnListClient" Command="{Binding ClientListNavigation}"   Content="Lista" Style="{DynamicResource ListRadioButtonStyle}" Tag="{DynamicResource list}"  
+                        IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModelsClient:ClientListViewModel}}"/>
+
+                    <Border Height="5"/>
+
+                    <RadioButton x:Name="btnAddClient" Command="{Binding ClientCreateNavigation}"  Content="Agregar" Style="{DynamicResource AddRadioButtonStyle}" Tag="{DynamicResource add}" 
+                        IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModelsClient:ClientCreateViewModel}}"/>
+
+                    <Border Height="5"/>
+
+                    <RadioButton IsEnabled="{Binding IsSelected}" x:Name="btnEditClient" Command="{Binding ClientEditNavigation}"  Content="Editar" Style="{DynamicResource EditRadioButtonStyle}" Tag="{DynamicResource edit}"
+                        IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModelsClient:ClientEditViewModel}}"/>
+
+                    <Border Height="5"/>
+
+                    <RadioButton IsEnabled="{Binding IsSelected}" x:Name="btnDeleteClient" Command="{Binding ClientDeleteNavigation}"  Content="Eliminar" Style="{DynamicResource DeleteRadioButtonStyle}" Tag="{DynamicResource delete}"
+                        IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModelsClient:ClientDeleteViewModel}}"/>
+
+                </StackPanel>
+
+            </Grid>
+
+
+
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border  MinWidth="500"/>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border  MinHeight="400"/>
+
+                    <ContentControl  Grid.Column="1" Content="{Binding CurrentViewModel}"/>
+
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+    </Grid>
+</UserControl>

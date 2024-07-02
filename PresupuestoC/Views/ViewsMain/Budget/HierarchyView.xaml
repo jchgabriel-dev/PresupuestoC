@@ -5,9 +5,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PresupuestoC.Views.Budget"
              mc:Ignorable="d" 
+             xmlns:order="clr-namespace:PresupuestoC.MVVM"
+             xmlns:viewModels="clr-namespace:PresupuestoC.ViewModels.ViewModelsBudget.Heriarchy"
+             xmlns:views="clr-namespace:PresupuestoC.Views.ViewsBudget.Heriarchy"                
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#dfdfdf">
-         
+        <Grid.Resources>
+
+            <order:ConverterViewModel x:Key="converterViewModel"/>
+    
+
+            <DataTemplate DataType="{x:Type TypeName=viewModels:CertificateViewModel}">
+                <views:CertificateView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModels:TitleViewModel}">
+                <views:TitleView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModels:LevelViewModel}">
+                <views:LevelView/>
+            </DataTemplate>
+
+           
+
+        </Grid.Resources>
+        
+
         <Border Grid.Row="1" Background="#ffffff" Margin="4">
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -61,7 +85,7 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <Border Background="#EFEFEF">
+                            <Border >
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="20*" MaxWidth="120"/>
@@ -72,12 +96,12 @@
 
 
                                     </Grid.ColumnDefinitions>
-                                    <RadioButton Grid.Column="0" x:Name="btnHeriarchy" Content="Jerarquia" Style="{DynamicResource ListRadioButtonStyle}" Tag="{DynamicResource hierarchy}" 
+                                    <RadioButton Command="{Binding LevelNavigation}" Grid.Column="0" x:Name="btnHeriarchy" Content="Jerarquia" Style="{DynamicResource ListRadioButtonStyle}" Tag="{DynamicResource hierarchy}" 
                                             Margin="2 0 0 0" />
-                                    <RadioButton Grid.Column="1" x:Name="btnPartida" Content="Partidas" Style="{DynamicResource AddRadioButtonStyle}" Tag="{DynamicResource certificate}" 
+                                    <RadioButton Command="{Binding CertificateNavigation}" Grid.Column="1" x:Name="btnPartida" Content="Partidas" Style="{DynamicResource AddRadioButtonStyle}" Tag="{DynamicResource certificate}" 
                                             Margin="2 0 0 0" />
-                                    
-                                    <RadioButton Grid.Column="2" x:Name="btnSubPartida" Content="Ttiulos" Style="{DynamicResource OptionRadioButtonStyle}" Tag="{DynamicResource title}" 
+
+                                    <RadioButton Command="{Binding TitleNavigation}" Grid.Column="2" x:Name="btnSubPartida" Content="Ttiulos" Style="{DynamicResource OptionRadioButtonStyle}" Tag="{DynamicResource title}" 
                                             Margin="2 0 0 0" />
                                     <RadioButton Grid.Column="3" x:Name="btnEdit" Content="Editar" Style="{DynamicResource EditRadioButtonStyle}" Tag="{DynamicResource edit}" 
                                             Margin="2 0 0 0" />
@@ -87,7 +111,9 @@
                                 </Grid>
                                 
                             </Border>
-                            
+
+                            <ContentControl  Grid.Row="1" Content="{Binding CurrentViewModel}"/>
+
                         </Grid>
                     </Border>
 

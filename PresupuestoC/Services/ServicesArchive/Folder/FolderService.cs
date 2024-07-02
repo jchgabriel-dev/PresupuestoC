@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PresupuestoC.Database;
 using PresupuestoC.Models.Archive;
+using PresupuestoC.Models.Main;
 using PresupuestoC.MVVM.Archive;
 using PresupuestoC.MVVM.Database;
 using PresupuestoC.Services.Currency;
@@ -82,5 +83,18 @@ namespace PresupuestoC.Services.Folder
                 return entity;
             }
         }
+
+
+        // OTROS SERVICIOS 
+
+        public async Task<bool> Check(FolderModel entity)
+        {
+            using (ArchiveContext context = _dbContextFactory.CreateDbContext())
+            {
+                bool exists = await context.Folders.AnyAsync(a => a.ParentId == entity.ParentId && a.Name == entity.Name);
+                return exists;
+            }
+        }
+
     }
 }

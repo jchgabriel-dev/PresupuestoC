@@ -21,7 +21,7 @@
             <TextBlock Text="Buscar : " Margin="1 2 0 0" FontWeight="DemiBold"/>
             
             <Grid Grid.Column="1">
-                <TextBox x:Name="NameFilter" Padding="5 2"  Style="{DynamicResource filterFormMain}" Text="{Binding DataContext.ProjectFilterName, RelativeSource={RelativeSource AncestorType=DataGrid}, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox x:Name="NameFilter" Padding="5 2"  Style="{DynamicResource filterFormMain}" Text="{Binding ProjectFilterName, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock IsHitTestVisible="False" Text="Ingresar nombre" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="7 0" Foreground="#388a9f">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
@@ -51,21 +51,15 @@
                >
             <DataGrid.InputBindings>
                 <MouseBinding
-           MouseAction="LeftDoubleClick"
-           Command="{Binding SelectProject}"
-           />
+                   MouseAction="LeftDoubleClick"
+                   Command="{Binding SelectProject}"
+                 />
 
             </DataGrid.InputBindings>
             
             <DataGrid.Columns>
                 <DataGridTemplateColumn  MinWidth="50" Width="5*" >
-                    <DataGridTemplateColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Padding="5 3" Text="Estado"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.HeaderTemplate>
+                    
 
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

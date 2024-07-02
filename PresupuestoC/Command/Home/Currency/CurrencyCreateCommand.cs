@@ -30,21 +30,22 @@ namespace PresupuestoC.Command.Currency
 
         public async override Task ExecuteAsync(object parameter)
         {
-            _viewModel.Symbol = _viewModel.Symbol;
-            _viewModel.Description = _viewModel.Description;
-
-            if (_viewModel.HasErrors)
-            {
-                return;
-            }
-
-            CurrencyModel currency = new CurrencyModel();
-            currency.Description = _viewModel.Description;
-            currency.Symbol = _viewModel.Symbol;
-            
+                       
 
             try
             {
+                _viewModel.Symbol = _viewModel.Symbol;
+                _viewModel.Description = _viewModel.Description;
+
+                if (_viewModel.HasErrors)
+                {
+                    return;
+                }
+
+                CurrencyModel currency = new CurrencyModel();
+                currency.Description = _viewModel.Description;
+                currency.Symbol = _viewModel.Symbol;
+
                 await _store.CreateCurrency(currency);                 
                 _navigation.Navigate();
 

@@ -153,17 +153,49 @@
                     <Border Height="24" Background="#000000"  CornerRadius="5,5,0,0">
                         <TextBlock Text="Portapapeles" Foreground="White" Margin="10 4 0 0" FontSize="12" FontWeight="DemiBold"/>
                     </Border>
-                    <Button Style="{DynamicResource btnRemove}" Content="Quitar de la lista" Tag="{DynamicResource remove}"/>
+                    <Border Background="#C2C2C2">
+                        <Button Margin="4" Style="{DynamicResource btnRemove}" Content="Quitar de la lista" Tag="{DynamicResource remove}"/>
+                    </Border>
+                    
+                    
                     <DataGrid
-                        CanUserAddRows="False" CanUserDeleteRows="False"
-                        AutoGenerateColumns="False" CanUserResizeColumns="False"
-                        CanUserResizeRows="False">
-
+                        ItemsSource="{Binding ProjectCollection}"
+                        Style="{DynamicResource dataForm}"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Auto"
+                        MaxHeight="300"  MaxWidth="300" 
+                        SelectedItem="{Binding Selected}"
+                        VirtualizingStackPanel.VirtualizationMode="Recycling"
+                        EnableRowVirtualization="True"
+                        EnableColumnVirtualization="True"
+                        GridLinesVisibility="Horizontal"                        
+                        >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" Width="20*" MinWidth="40"/>
-                            <DataGridTextColumn Header="Nombre" Width="80*"/>
+                            <DataGridTemplateColumn >
+                                <DataGridTemplateColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Padding="5 3" Text="Elementos"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.HeaderTemplate>
+
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Viewbox Height="15" Margin="4 0 4 2">
+                                                <Path Data="{DynamicResource project}" Fill="#88c7ff"/>
+                                            </Viewbox>
+                                            <TextBlock VerticalAlignment="Center" Padding="5 0" Text="{Binding Name}" />
+
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
-                        
+                            
+
                     </DataGrid>
                 </StackPanel>
             </Border> 
@@ -205,15 +237,9 @@
 
                         <Border Background="#C2C2C2">
                             <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" MaxHeight="20" MinHeight="20"/>
-                                    <RowDefinition/>
-                                    
-                                </Grid.RowDefinitions>
-                                
-                                
-                                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="4">
-
+                                                                                                
+                                <StackPanel Orientation="Vertical" Margin="4">
+                       
 
                                     <Button Background="#fbcdcd" Foreground="#922222" Style="{DynamicResource btnAction}" Content="Importar" Tag="{DynamicResource import}"/>
                                     <Border Height="2"/>
@@ -237,8 +263,8 @@
                                 <RowDefinition Height="27"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Border Background="#EFEFEF" >
-                                <Grid>
+                            <Border Background="#ffffff" >
+                                <Grid HorizontalAlignment="Left" Margin="5 0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="20*" MaxWidth="120"/>
                                         <ColumnDefinition Width="20*" MaxWidth="120"/>
@@ -255,14 +281,14 @@
                                     <RadioButton Grid.Column="1"  x:Name="btnAddProject" Command="{Binding ProjectCreateNavigation}"  Content="Agregar" Style="{DynamicResource AddRadioButtonStyle}" Tag="{DynamicResource add}" 
                                         Margin="2 0 0 0"  IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModels:ProjectCreateViewModel}}"/>
 
-                                    <RadioButton Grid.Column="2"  x:Name="btnEditProject" Command="{Binding ProjectEditNavigation}" Content="Editar" Style="{DynamicResource EditRadioButtonStyle}" Tag="{DynamicResource edit}"
+                                    <RadioButton Grid.Column="2" IsEnabled="{Binding SelectedProject}"  x:Name="btnEditProject" Command="{Binding ProjectEditNavigation}" Content="Editar" Style="{DynamicResource EditRadioButtonStyle}" Tag="{DynamicResource edit}"
                                         Margin="2 0 0 0"  IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModels:ProjectEditViewModel}}"/>
 
-                                    <RadioButton Grid.Column="3"  x:Name="btnDeleteProject" Command="{Binding ProjectDeleteNavigation}" Content="Editar" Style="{DynamicResource DeleteRadioButtonStyle}" Tag="{DynamicResource delete}"
+                                    <RadioButton Grid.Column="3" IsEnabled="{Binding SelectedProject}"  x:Name="btnDeleteProject" Command="{Binding ProjectDeleteNavigation}" Content="Eliminar" Style="{DynamicResource DeleteRadioButtonStyle}" Tag="{DynamicResource delete}"
                                         Margin="2 0 0 0"  IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource ResourceKey=converterViewModel}, ConverterParameter={x:Type viewModels:ProjectDeleteViewModel}}"/>
 
 
-                                    <RadioButton Grid.Column="4" x:Name="btnPrintProject" Content="Imprimir" Style="{DynamicResource OptionRadioButtonStyle}" Tag="{DynamicResource print}" 
+                                    <RadioButton Grid.Column="4" IsEnabled="{Binding SelectedProject}"  x:Name="btnPrintProject" Content="Imprimir" Style="{DynamicResource OptionRadioButtonStyle}" Tag="{DynamicResource print}" 
                                                   Margin="2 0 0 0" />
 
                                 </Grid>
@@ -318,15 +344,9 @@
 
                         <Border Background="#C2C2C2">
                             <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" MaxHeight="20" MinHeight="20"/>
-                                    <RowDefinition/>
-
-                                </Grid.RowDefinitions>
-
-
+                      
                                 <StackPanel Grid.Row="1" Orientation="Vertical" Margin="4">
-
+                                                                     
 
                                     <Button Background="#baf8cb" Foreground="#135428" Style="{DynamicResource btnAction}" Content="Subir" Tag="{DynamicResource up}"/>
                                     <Border Height="2"/>
@@ -348,21 +368,126 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <Border Background="#EFEFEF" >
+                            <Border Background="#ffffff" >
 
-                                <Grid>
-                                <Grid.ColumnDefinitions>
+                                <Grid HorizontalAlignment="Left" Margin="5 0">
+                                    <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="30*" MaxWidth="120"/>
                                     <ColumnDefinition Width="30*" MaxWidth="120"/>
                                     <ColumnDefinition Width="30*" MaxWidth="120"/>
                                 </Grid.ColumnDefinitions>
-                                    <Button Command="{Binding SubCreateNavigation}"  Margin="2 0 0 0" Grid.Column="0" Style="{DynamicResource btnAdd}" Content="Agregar" Tag="{DynamicResource add}"/>
-                                    <Button Command="{Binding SubEditNavigation}"  Margin="2 0 0 0" Grid.Column="1" Style="{DynamicResource btnEdit}" Content="Editar" Tag="{DynamicResource edit}"/>
-                                    <Button Command="{Binding SubDeleteNavigation}"  Margin="2 0 0 0" Grid.Column="2" Style="{DynamicResource btnDelete}" Content="Eliminar" Tag="{DynamicResource list}"/>
+                                    <Button IsEnabled="{Binding SelectedProject}" Command="{Binding SubCreateNavigation}"  Margin="2 0 0 0" Grid.Column="0" Style="{DynamicResource btnAdd}" Content="Agregar" Tag="{DynamicResource add}"/>
+                                    <Button IsEnabled="{Binding IsSelectedSubBudget}" Command="{Binding SubEditNavigation}"  Margin="2 0 0 0" Grid.Column="1" Style="{DynamicResource btnEdit}" Content="Editar" Tag="{DynamicResource edit}"/>
+                                    <Button IsEnabled="{Binding IsSelectedSubBudget}" Command="{Binding SubDeleteNavigation}"  Margin="2 0 0 0" Grid.Column="2" Style="{DynamicResource btnDelete}" Content="Eliminar" Tag="{DynamicResource list}"/>
 
                                 </Grid>
                                 
-                                </Border>
+                             </Border>
+
+                            <DataGrid   Margin="10 5"
+                                        Grid.Row="1" ItemsSource="{Binding SubBudgetCollection}"
+                                        Style="{DynamicResource dataForm}"
+                                        VerticalScrollBarVisibility="Auto"
+                                        HorizontalScrollBarVisibility="Auto"
+                                        MaxHeight="300"  MaxWidth="950" 
+                                        SelectedItem="{Binding SelectedSubBudget}"
+                                        VirtualizingStackPanel.VirtualizationMode="Recycling"
+                                        EnableRowVirtualization="True"
+                                        EnableColumnVirtualization="True"
+                                        GridLinesVisibility="Horizontal">
+
+                                <DataGrid.InputBindings>
+                                    <MouseBinding
+                                       MouseAction="LeftDoubleClick"/>
+                                </DataGrid.InputBindings>
+
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn  MinWidth="50" Width="5*" >
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ToggleButton IsChecked="{Binding Active}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTemplateColumn  MinWidth="50" Width="5*"   >
+
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Padding="0 0 0 0" Text="{Binding Order, StringFormat={}{0:D2}}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+
+                                    </DataGridTemplateColumn>
+
+
+                                    <DataGridTemplateColumn  MinWidth="200" Width="50*"  >
+                                        <DataGridTemplateColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <TextBlock Padding="5 3" Text="Nombre"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.HeaderTemplate>
+
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Viewbox Height="15" Margin="4 0 4 2">
+                                                        <Path Data="{DynamicResource budget}" Fill="#FDC630"/>
+                                                    </Viewbox>
+                                                    <TextBlock VerticalAlignment="Center" Padding="5 0" Text="{Binding Description}" />
+
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTemplateColumn  MinWidth="100" Width="20*"   >
+                                        <DataGridTemplateColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <TextBlock Padding="5 3" Text="C. Directo"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.HeaderTemplate>
+
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Padding="0 0 20 0" Text="{Binding Direct}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTemplateColumn  MinWidth="100" Width="20*"   >
+                                        <DataGridTemplateColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <TextBlock Padding="5 3" Text="Total"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.HeaderTemplate>
+
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Padding="0 0 20 0" Text="{Binding Total}"  VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+
+                                    </DataGridTemplateColumn>
+
+
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+                            
+                            
 
                         </Grid>
                     

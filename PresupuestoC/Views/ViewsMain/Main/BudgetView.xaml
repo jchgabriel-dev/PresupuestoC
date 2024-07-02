@@ -108,7 +108,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Margin="10 0" TextAlignment="Right" Text="Proyecto : " Foreground="#ffffff" FontWeight="DemiBold" FontSize="11"/>
-                        <TextBlock Grid.Column="1" Text="Nombre del proyecto" Foreground="#ffffff" FontSize="11"/>
+                        <TextBlock Margin="4 0" Grid.Column="1" Text="{Binding Name}" Foreground="#ffffff" FontSize="11"/>
                     </Grid>
                     <Grid Grid.Row="1" Margin="0 2 0 0">
                         <Grid.ColumnDefinitions>
@@ -116,7 +116,18 @@
                             <ColumnDefinition MaxWidth="300"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Margin="10 2"  TextAlignment="Right" Text="Sub-presupuestos : " Foreground="#ffffff" FontWeight="DemiBold" FontSize="11"/>
-                        <ComboBox Padding="5 1"  Grid.Column="1" Style="{DynamicResource comboProject}"/>
+                        <ComboBox Padding="5 1" SelectedItem="{Binding SelectedSubBudget, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SubBudgetCollection}"  Grid.Column="1" Style="{DynamicResource comboProject}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Order,  StringFormat={}{0:D2}. }"/>
+                                        <TextBlock Padding=" 5 0" Text="{Binding Description}"/>
+                                    </StackPanel>
+                                    
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                            
+                        </ComboBox>
 
                     </Grid>
                 </Grid>

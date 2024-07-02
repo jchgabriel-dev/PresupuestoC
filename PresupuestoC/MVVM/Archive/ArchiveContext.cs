@@ -15,10 +15,12 @@ namespace PresupuestoC.MVVM.Archive
     public class ArchiveContext : DbContext
     {
         public DbSet<ProjectModel> Projects { get; set; }
-        public DbSet<CustomerModel> Customers { get; set; }
-        public DbSet<MoneyModel> Moneys { get; set; }
+        public DbSet<ClientArchiveModel> ClientArchives { get; set; }
+        public DbSet<CurrencyArchiveModel> CurrencyArchives { get; set; }
+        public DbSet<LocationArchiveModel> LocationArchives { get; set; }
+
+
         public DbSet<StateModel> States { get; set; }
-        public DbSet<LocationModel> Locations { get; set; }
         public DbSet<FolderModel> Folders { get; set; }
         public DbSet<SubBudgetModel> SubBudgets { get; set; }
 
@@ -43,19 +45,19 @@ namespace PresupuestoC.MVVM.Archive
                 entity.Property(p => p.Id).ValueGeneratedOnAdd();
                 entity.Property(p => p.Name).IsRequired();
 
-                entity.HasOne(p => p.Location)
+                entity.HasOne(p => p.LocationArchive)
                     .WithOne(a => a.Project)
-                    .HasForeignKey<ProjectModel>(p => p.LocationId)
+                    .HasForeignKey<ProjectModel>(p => p.LocationArchiveId)
                     .OnDelete(DeleteBehavior.NoAction);
 
-                entity.HasOne(p => p.Customer)
+                entity.HasOne(p => p.ClientArchive)
                    .WithOne(a => a.Project)
-                   .HasForeignKey<ProjectModel>(p => p.CustomerId)
+                   .HasForeignKey<ProjectModel>(p => p.ClientArchiveId)
                    .OnDelete(DeleteBehavior.NoAction);
 
-                entity.HasOne(p => p.Money)
+                entity.HasOne(p => p.CurrencyArchive)
                    .WithOne(a => a.Project)
-                   .HasForeignKey<ProjectModel>(p => p.MoneyId)
+                   .HasForeignKey<ProjectModel>(p => p.CurrencyArchiveId)
                    .OnDelete(DeleteBehavior.NoAction);
 
                 entity.HasOne(p => p.Folder)
@@ -70,7 +72,7 @@ namespace PresupuestoC.MVVM.Archive
             });
 
 
-            modelBuilder.Entity<LocationModel>(entity =>
+            modelBuilder.Entity<LocationArchiveModel>(entity =>
             {
                 entity.HasKey(p => p.Id);
                 entity.Property(p => p.Id).ValueGeneratedOnAdd();
@@ -80,14 +82,14 @@ namespace PresupuestoC.MVVM.Archive
 
             });
 
-            modelBuilder.Entity<CustomerModel>(entity =>
+            modelBuilder.Entity<ClientArchiveModel>(entity =>
             {
                 entity.HasKey(p => p.Id);
                 entity.Property(p => p.Id).ValueGeneratedOnAdd();
                 entity.Property(p => p.Name).IsRequired();
             });
 
-            modelBuilder.Entity<MoneyModel>(entity =>
+            modelBuilder.Entity<CurrencyArchiveModel>(entity =>
             {
                 entity.HasKey(p => p.Id);
                 entity.Property(p => p.Id).ValueGeneratedOnAdd();
@@ -120,7 +122,7 @@ namespace PresupuestoC.MVVM.Archive
             {
                 entity.HasKey(p => p.Id);
                 entity.Property(p => p.Id).ValueGeneratedOnAdd();
-                entity.Property(p => p.Name).IsRequired();
+                entity.Property(p => p.Description).IsRequired();
 
                 entity.HasOne(p => p.Project)
                     .WithMany(a => a.SubBudgets)

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PresupuestoC.Models.Archive;
 using PresupuestoC.MVVM.Archive;
-using PresupuestoC.Services.Money;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +51,11 @@ namespace PresupuestoC.Services.SubBudget
 
         public async Task<IEnumerable<SubBudgetModel>> GetAll()
         {
+            if (!_dbContextFactory.Connected())
+            {
+                return Enumerable.Empty<SubBudgetModel>();
+            }
+
             using (ArchiveContext context = _dbContextFactory.CreateDbContext())
             {
                 IEnumerable<SubBudgetModel> entities = await context.SubBudgets.ToListAsync();
@@ -68,6 +72,26 @@ namespace PresupuestoC.Services.SubBudget
                 context.SubBudgets.Update(entity);
                 await context.SaveChangesAsync();
                 return entity;
+            }
+        }
+
+        public async Task<int> GetOrder(int id)
+        {
+            using (ArchiveContext context = _dbContextFactory.CreateDbContext())
+            {
+                int count = await context.SubBudgets.CountAsync(sb => sb.ProjectId == id);
+                return count;
+            }
+        }
+
+        public async Task<IEnumerable<SubBudgetModel>> GetProjectSubs(int id)
+        {
+            using (ArchiveContext context = _dbContextFactory.CreateDbContext())
+            {
+                IEnumerable<SubBudgetModel> entities = await context.SubBudgets
+                    .Where(sb => sb.ProjectId == id)
+                    .ToListAsync();
+                return entities;
             }
         }
     }

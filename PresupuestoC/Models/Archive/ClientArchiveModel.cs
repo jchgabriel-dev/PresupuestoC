@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PresupuestoC.Models.Archive
 {
-    public class CustomerModel : DomainModel
+    public class ClientArchiveModel : DomainModel
     {
         public string Name { get; set; }
         public string Address { get; set; }

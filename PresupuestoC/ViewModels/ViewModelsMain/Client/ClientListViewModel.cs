@@ -36,6 +36,8 @@ namespace PresupuestoC.ViewModels.Client
                 ClientCollection.Refresh();
             }
         }
+
+
         private string _clientFilterAddress = string.Empty;
         public string ClientFilterAddress
         {

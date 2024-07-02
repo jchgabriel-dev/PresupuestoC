@@ -18,13 +18,13 @@ namespace PresupuestoC.Stores.Project
             set
             {
                 _currentProject = value;
-                CurrentCurrencyChanged?.Invoke();
+                CurrentProjectChanged?.Invoke();
             }
         }
 
         public bool IsSelected => CurrentProject != null;
 
-        public event Action CurrentCurrencyChanged;
+        public event Action CurrentProjectChanged;
 
         public void Deselected()
         {

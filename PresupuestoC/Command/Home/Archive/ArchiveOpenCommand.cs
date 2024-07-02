@@ -11,6 +11,7 @@ using System.Windows;
 using PresupuestoC.Models.Main;
 using PresupuestoC.Stores.Folder;
 using PresupuestoC.Stores.Project;
+using PresupuestoC.Stores.SubBudget;
 
 namespace PresupuestoC.Command.Archive
 {
@@ -21,16 +22,18 @@ namespace PresupuestoC.Command.Archive
         private readonly ArchiveSelectedStore _selected;
         private readonly FolderListStore _folderStore;
         private readonly ProjectListStore _projectStore;
+        private readonly SubBudgetListStore _subStore;
 
 
         public ArchiveOpenCommand(ArchivesListStore store,  ArchiveTemporalStore temporal, ArchiveSelectedStore selected, 
-            FolderListStore folderStore, ProjectListStore projectStore)
+            FolderListStore folderStore, ProjectListStore projectStore, SubBudgetListStore subStore)
         {
             _store = store;
             _temporal = temporal;
             _selected = selected;
             _folderStore = folderStore;
             _projectStore = projectStore;
+            _subStore = subStore;
 
         }
 
@@ -60,6 +63,7 @@ namespace PresupuestoC.Command.Archive
                     _selected.CurrentArchive = test;
                     await _folderStore.Reload();
                     await _projectStore.Reload();
+                    await _subStore.Reload();
 
                 }
 

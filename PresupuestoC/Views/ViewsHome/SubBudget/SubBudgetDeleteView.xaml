@@ -31,7 +31,7 @@
                     <TextBlock HorizontalAlignment="Center"  Padding="8 0"  Text="¿Estas seguro que deseas eliminar el siguiente sub-presupuesto?" FontWeight="SemiBold"/>
 
                     <Border Height="3"/>
-                    <TextBlock Padding="8 0" MaxWidth="300" HorizontalAlignment="Center" Text="{Binding Name}" TextWrapping="Wrap" Foreground="Red"/>
+                    <TextBlock Padding="8 0" MaxWidth="300" HorizontalAlignment="Center" Text="{Binding Description}" TextWrapping="Wrap" Foreground="Red"/>
                     <Border Height="7"/>
                 </StackPanel>
 
@@ -49,7 +49,7 @@
                         <ColumnDefinition Width="50*" MaxWidth="130"/>
                         <ColumnDefinition Width="50*" MaxWidth="130"/>
                     </Grid.ColumnDefinitions>
-                    <Button Command="{Binding DeleteFolder}" IsEnabled="{Binding CanDelete}" Content="Eliminar" Tag="{DynamicResource delete}" Grid.Column="1" Style="{DynamicResource btnMain}"/>
+                    <Button Command="{Binding DeleteSubBudget}" IsEnabled="{Binding CanDelete}" Content="Eliminar" Tag="{DynamicResource delete}" Grid.Column="1" Style="{DynamicResource btnMain}"/>
                     <Button Content="Cancelar" Tag="{DynamicResource cancel}" Grid.Column="2" 
                 Style="{DynamicResource btnSecondary}"  Command="{Binding CloseModal}"/>
                 </Grid>

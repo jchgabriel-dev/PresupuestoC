@@ -41,7 +41,7 @@
 
 
                 </Grid.ColumnDefinitions>
-                <Button IsEnabled="{Binding CanDelete}" Command="{Binding DeleteCurrency}" Grid.Column="2" Content="Eliminar" Style="{DynamicResource btnMain}" Tag="{DynamicResource delete}"/>
+                <Button IsEnabled="{Binding CanDelete}" Command="{Binding DeleteProject}" Grid.Column="2" Content="Eliminar" Style="{DynamicResource btnMain}" Tag="{DynamicResource delete}"/>
                 <Button Command="{Binding Cancel}" Grid.Column="3" Content="Cancelar" Style="{DynamicResource btnSecondary}" Tag="{DynamicResource cancel}"/>
             </Grid>
 

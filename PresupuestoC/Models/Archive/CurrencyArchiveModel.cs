@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PresupuestoC.Models.Archive
 {
-    public class MoneyModel : DomainModel
+    public class CurrencyArchiveModel : DomainModel
     {
         public string Description { get; set; }
         public string Symbol { get; set; }     

@@ -1,4 +1,5 @@
 ﻿using PresupuestoC.Models.Archive;
+using PresupuestoC.Models.Main;
 using PresupuestoC.Services.Currency;
 using PresupuestoC.Services.Folder;
 using System;
@@ -24,7 +25,6 @@ namespace PresupuestoC.Stores.Folder
         {
             _folderService = currencyFolder;
             _initializeLazy = new Lazy<Task>(Initialize);
-
             _folders = new List<FolderModel>();
         }
 
@@ -33,17 +33,20 @@ namespace PresupuestoC.Stores.Folder
             await _initializeLazy.Value;
         }
 
-        public async Task CreateFolder(FolderModel folder)
-        {           
-            FolderModel item = new FolderModel();
-            item.Name = folder.Name;
-            item.ParentId = folder.ParentId;
-            item.Type = folder.Type;
+        public async Task CreateFolder(FolderModel folder, FolderModel selected)
+        {
+            bool created = await _folderService.Check(folder);
 
-            FolderModel itemCreated = await _folderService.Create(item);          
-            folder.Parent.Children.Add(itemCreated);
-            itemCreated.Parent = folder.Parent;
-            itemCreated.Parent.Expanded = true;
+            if (created)
+            {
+                throw new InvalidOperationException();
+            }
+
+
+            FolderModel itemCreated = await _folderService.Create(folder);    
+            selected.Children.Add(itemCreated);
+            itemCreated.Parent = selected;
+            selected.Expanded = true;       
 
             _folders.Add(itemCreated);
             Changes?.Invoke();
@@ -53,21 +56,33 @@ namespace PresupuestoC.Stores.Folder
         {
             await _folderService.Delete(id);
             FolderModel item = _folders.FirstOrDefault(c => c.Id == id);
-            item.Parent.Children.Remove(item);
-           
+            item.Parent.Selected = true;
+
+            item.Parent.Children.Remove(item);   
             _folders.Remove(item);           
             Changes?.Invoke();
-
         }
 
 
         public async Task UpdateFolder(int id, FolderModel folder)
         {
+            bool created = await _folderService.Check(folder);
+
+            if (created)
+            {
+                throw new InvalidOperationException();
+            }
+
             await _folderService.Update(id, folder);
             var item = _folders.FirstOrDefault(c => c.Id == id);
             item.Name = folder.Name;
             Changes?.Invoke();
 
+        }
+     
+        public async Task<FolderModel> GetFolder(int id)
+        {
+            return await _folderService.Get(id);
         }
 
         public async Task Reload()

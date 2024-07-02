@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,33 +35,8 @@ namespace PresupuestoC.ViewModels.Project
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
         public bool CanCreate => !HasErrors;
         public bool HasErrors => _errorsViewModel.HasErrors;
-
-
-        private FolderModel _folder;
-        public FolderModel Folder
-        {
-            get
-            {
-                return _folder;
-            }
-            set
-            {
-                _folder = value;
-                _errorsViewModel.ClearErrors(nameof(Folder));
-                if (_folder == null)
-                {
-                    _errorsViewModel.AddError(nameof(Folder), "Este campo es obligatorio");
-                } 
-
-                else if (_folder.Type == 1)
-                {
-                    _errorsViewModel.AddError(nameof(Folder), "Este carpeta no esta permitida");
-                }
-
-
-                OnPropertyChanged(nameof(Folder));
-            }
-        }
+      
+        public FolderModel Folder => _folderSelected.CurrentFolder;                    
 
 
         private string _name;
@@ -91,44 +67,9 @@ namespace PresupuestoC.ViewModels.Project
         }
         
 
-        private ClientModel _client;
-        public ClientModel Client
-        {
-            get
-            {
-                return _client;
-            }
-            set
-            {
-                _client = value;
-                _errorsViewModel.ClearErrors(nameof(Client));
-                if (_client == null)
-                {
-                    _errorsViewModel.AddError(nameof(Client), "Este campo es obligatorio");
-                }
-                OnPropertyChanged(nameof(Client));
-            }
-        }
-
-        private DistrictModel _location;
-        public DistrictModel Location
-        {
-            get
-            {
-                return _location; 
-            }
-            set
-            {
-                _location = value;
-                _errorsViewModel.ClearErrors(nameof(Location));
-                if (_location == null)
-                {
-                    _errorsViewModel.AddError(nameof(Location), "Este campo es obligatorio");
-                }
-                OnPropertyChanged(nameof(Location));
-
-            }
-        }
+        public ClientModel Client => _temporalStore.CurrentClient;    
+        public DistrictModel Location => _temporalStore.CurrentDistrict;
+     
 
 
         private DateTime? _date;
@@ -192,26 +133,8 @@ namespace PresupuestoC.ViewModels.Project
         }
 
 
-        private CurrencyModel _currency;
-        public CurrencyModel Currency
-        {
-            get
-            {
-                return _currency;               
-            }
-            set
-            {
-
-                _currency = value;                
-                _errorsViewModel.ClearErrors(nameof(Currency));
-                if (_currency == null)
-                {
-                    _errorsViewModel.AddError(nameof(Currency), "Este campo es obligatorio");
-                }
-                OnPropertyChanged(nameof(Currency));
-
-            }
-        }
+        public CurrencyModel Currency => _temporalStore.CurrentCurrency;
+  
 
         private bool _IGV;
 
@@ -251,6 +174,7 @@ namespace PresupuestoC.ViewModels.Project
         public ICommand CurrencyModalNavigation { get; }
 
         public ICommand ProjectCreate {  get; }
+        public ICommand Cancel { get; }
 
 
         // CONSTRUCTOR
@@ -261,7 +185,8 @@ namespace PresupuestoC.ViewModels.Project
             ProjectNavigationService<ProjectListViewModel> navigateProjectList,
             ProjectListStore store,
             ProjectTemporalStore creation,
-            FolderSelectedStore folder)
+            FolderSelectedStore folder,
+            ProjectSelectedStore selected)
         {
             _modalNavigationStore = navigationStore;
             _temporalStore = creation;
@@ -274,6 +199,8 @@ namespace PresupuestoC.ViewModels.Project
             ClientModalNavigation = new ModalNavigateCommand<ClientViewModel>(navigateClient);
             LocationModalNavigation = new ModalNavigateCommand<LocationViewModel>(navigateLocation);
             CurrencyModalNavigation = new ModalNavigateCommand<CurrencyViewModel>(navigateCurrency);
+            Cancel = new ProjectNavigateCommand<ProjectListViewModel>(navigateProjectList);
+
             NameUpper = new ProjectNameUpper(this);
             ProjectCreate = new ProjectCreateCommand(this, navigateProjectList, store);
 
@@ -283,35 +210,68 @@ namespace PresupuestoC.ViewModels.Project
             _temporalStore.CurrentLocationChanged += LocationChanged;
             _temporalStore.CurrentCurrencyChanged += CurrencyChanged;
             _temporalStore.CurrentClientChanged += ClientChanged;
-
             _folderSelected.CurrentFolderChanged += FolderChanged;
-            Folder = _folderSelected.CurrentFolder;
+
+            selected.Deselected();
+            FolderChanged();
         }
 
-        private void FolderChanged()
+
+        public void FolderChanged()
         {
-            Folder = _folderSelected.CurrentFolder;
+            FolderModel item = _folderSelected.CurrentFolder;
+
+            _errorsViewModel.ClearErrors(nameof(Folder));
+            if (item == null)
+            {
+                _errorsViewModel.AddError(nameof(Folder), "Este campo es obligatorio");
+            }
+
+            else if (item.Type == 1)
+            {
+                _errorsViewModel.AddError(nameof(Folder), "Este carpeta no esta permitida");
+            }
+
+            OnPropertyChanged(nameof(Folder));
         }
 
 
-        private void CurrencyChanged()
+        public void CurrencyChanged()
         {
-            Currency = _temporalStore.CurrentCurrency;          
+            CurrencyModel item = _temporalStore.CurrentCurrency;
+            _errorsViewModel.ClearErrors(nameof(Currency));
+            if (item == null)
+            {
+                _errorsViewModel.AddError(nameof(Currency), "Este campo es obligatorio");
+            }
+            OnPropertyChanged(nameof(Currency));
         }
 
-        private void LocationChanged()
+
+        public void LocationChanged()
         {
-            Location = _temporalStore.CurrentDistrict;
+            DistrictModel item = _temporalStore.CurrentDistrict;
+            _errorsViewModel.ClearErrors(nameof(Location));
+            if (item == null)
+            {
+                _errorsViewModel.AddError(nameof(Location), "Este campo es obligatorio");
+            }
+            OnPropertyChanged(nameof(Location));
 
         }
-        private void ClientChanged()
+        public void ClientChanged()
         {
-            Client = _temporalStore.CurrentClient;
+
+            ClientModel item = _temporalStore.CurrentClient;
+
+            _errorsViewModel.ClearErrors(nameof(Client));
+            if (item == null)
+            {
+                _errorsViewModel.AddError(nameof(Client), "Este campo es obligatorio");
+            }
+            OnPropertyChanged(nameof(Client));           
 
         }
-
-
-
 
         public IEnumerable GetErrors(string propertyName)
         {

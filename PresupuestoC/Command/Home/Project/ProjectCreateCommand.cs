@@ -37,15 +37,16 @@ namespace PresupuestoC.Command.Project
         {            
             try
             {
-                _viewModel.Folder = _viewModel.Folder;
+                _viewModel.FolderChanged();
+                _viewModel.ClientChanged();
+                _viewModel.LocationChanged();
+                _viewModel.CurrencyChanged();
+
                 _viewModel.Name = _viewModel.Name;
-                _viewModel.Client = _viewModel.Client;
-                _viewModel.Location = _viewModel.Location;
                 _viewModel.Place = _viewModel.Place;
                 _viewModel.Date = _viewModel.Date;
                 _viewModel.Work = _viewModel.Work;
                 _viewModel.Group = _viewModel.Group;
-                _viewModel.Currency = _viewModel.Currency;
                 _viewModel.IGV = _viewModel.IGV;
                 _viewModel.Left = _viewModel.Left;
                 _viewModel.Right = _viewModel.Right;
@@ -57,15 +58,15 @@ namespace PresupuestoC.Command.Project
 
                
 
-                CustomerModel customer = new CustomerModel();
+                ClientArchiveModel customer = new ClientArchiveModel();
                 customer.Name = _viewModel.Client.Name;
                 customer.Address = _viewModel.Client.Address;
 
-                MoneyModel money = new MoneyModel();
+                CurrencyArchiveModel money = new CurrencyArchiveModel();
                 money.Symbol = _viewModel.Currency.Symbol;
                 money.Description = _viewModel.Currency.Description;
 
-                LocationModel location = new LocationModel();
+                LocationArchiveModel location = new LocationArchiveModel();
                 location.District = _viewModel.Location.Name;
                 location.Province = _viewModel.Location.Province.Name;
                 location.Region = _viewModel.Location.Province.Region.Name;
@@ -83,11 +84,13 @@ namespace PresupuestoC.Command.Project
                 project.StateId = 1;
 
                 await _store.CreateProject(project, customer, money, location);
+                _navigation.Navigate();
+
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error",
+                MessageBox.Show("Error al crear el proyecto", "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

@@ -7,6 +7,7 @@ using PresupuestoC.Stores.Archive;
 using PresupuestoC.Stores.Client;
 using PresupuestoC.Stores.Folder;
 using PresupuestoC.Stores.Project;
+using PresupuestoC.Stores.SubBudget;
 using PresupuestoC.ViewModels.Client;
 using System;
 using System.Collections.Generic;
@@ -60,7 +61,8 @@ namespace PresupuestoC.ViewModels.Home2
             ArchiveSelectedStore selected,
             ArchiveTemporalStore temporal,
             FolderListStore folderStore,
-            ProjectListStore projectStore)
+            ProjectListStore projectStore,
+            SubBudgetListStore subStore)
         {
             _archives = new ObservableCollection<ArchiveModel>();
             _store = store;
@@ -70,7 +72,7 @@ namespace PresupuestoC.ViewModels.Home2
             LoadArchives = new ArchiveLoadCommand(this, store);
             CreateArchive = new ArchiveCreateCommand(store);
             SearchArchive = new ArchiveSearchCommand(store);
-            OpenArchive = new ArchiveOpenCommand(store, temporal, selected, folderStore, projectStore);
+            OpenArchive = new ArchiveOpenCommand(store, temporal, selected, folderStore, projectStore, subStore);
 
             temporal.Deselected();
             _store.ArchiveChanges += ArchiveChanged;
@@ -87,9 +89,10 @@ namespace PresupuestoC.ViewModels.Home2
             ArchiveSelectedStore selected,  
             ArchiveTemporalStore temporal,
             FolderListStore folderStore,
-            ProjectListStore projectStore)
+            ProjectListStore projectStore,
+            SubBudgetListStore subStore)
         {
-            ArchivesViewModel viewModel = new ArchivesViewModel(store, selected, temporal, folderStore, projectStore);
+            ArchivesViewModel viewModel = new ArchivesViewModel(store, selected, temporal, folderStore, projectStore, subStore);
             viewModel.LoadArchives.Execute(null);
             return viewModel;
 

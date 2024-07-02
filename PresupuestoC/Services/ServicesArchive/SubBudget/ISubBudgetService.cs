@@ -16,6 +16,8 @@ namespace PresupuestoC.Services.SubBudget
         Task<SubBudgetModel> Create(SubBudgetModel entity);
         Task<SubBudgetModel> Update(int id, SubBudgetModel entity);
         Task<bool> Delete(int id);
+        Task<int> GetOrder(int id);
+        Task<IEnumerable<SubBudgetModel>> GetProjectSubs(int id);
 
     }
 }

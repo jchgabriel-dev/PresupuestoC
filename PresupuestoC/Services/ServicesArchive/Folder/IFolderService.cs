@@ -15,5 +15,7 @@ namespace PresupuestoC.Services.Folder
         Task<FolderModel> Update(int id, FolderModel entity);
         Task<bool> Delete(int id);
 
+        Task<bool> Check(FolderModel entity);
+
     }
 }

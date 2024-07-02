@@ -30,26 +30,31 @@ namespace PresupuestoC.Command.Folder
 
 
         public async override Task ExecuteAsync(object parameter)
-        {
-            _viewModel.Name = _viewModel.Name;
-
-            if (_viewModel.HasErrors)
-            {
-                return;
-            }
-
-            FolderModel folder = new FolderModel();
-            folder.Name = _viewModel.Name;
-            folder.Type = 3;
-            folder.ParentId = _selected.CurrentFolder.ParentId;
-
-
+        {            
             try
             {
-                await _store.UpdateFolder(_selected.CurrentFolder.Id, folder);
+
+                _viewModel.Name = _viewModel.Name;
+
+                if (_viewModel.HasErrors)
+                {
+                    return;
+                }
+
+                FolderModel item = await _store.GetFolder(_selected.CurrentFolder.Id);
+                item.Name = _viewModel.Name;
+            
+                await _store.UpdateFolder(_selected.CurrentFolder.Id, item);
                 _navigation.Navigate();
                 
             }
+
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show("Ya existe una carpeta con dicho nombre", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
             catch (Exception ex)
             {
                 MessageBox.Show("Error al editar la carpeta", "Error",

@@ -1,18 +1,20 @@
-﻿using PresupuestoC.Models.Main;
+﻿using PresupuestoC.Models.Archive;
+using PresupuestoC.Models.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PresupuestoC.Stores.SubBudget
 {
 
     public class SubBudgetSelectedStore
     {
-        private ClientModel _currentSubBudget;
+        private SubBudgetModel _currentSubBudget;
 
-        public ClientModel CurrentSubBudget
+        public SubBudgetModel CurrentSubBudget
         {
             get => _currentSubBudget;
             set

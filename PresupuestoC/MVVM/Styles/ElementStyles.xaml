@@ -9,8 +9,8 @@
         <Setter Property="Foreground" Value="#3d6e27"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Height" Value="22"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Height" Value="19"/>
         <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="Template">
@@ -24,7 +24,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
-                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                            <Viewbox Height="15" Width="18" Margin="3 0 0 0">
                                 <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}" Stretch="None" Fill="#3d6e27" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             </Viewbox>
                             <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
@@ -56,8 +56,8 @@
         <Setter Property="Foreground" Value="#2f699a"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Height" Value="22"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Height" Value="19"/>
         <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="Template">
@@ -71,7 +71,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
-                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                            <Viewbox Height="15" Width="18" Margin="3 0 0 0">
                                 <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}" Stretch="None" Fill="#2f699a" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             </Viewbox>
                             <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
@@ -109,8 +109,8 @@
         <Setter Property="Foreground" Value="#5d5d5d"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Height" Value="22"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Height" Value="19"/>
         <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="Template">
@@ -124,7 +124,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
-                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                            <Viewbox Height="15" Width="18" Margin="3 0 0 0">
                                 <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}" Stretch="None" Fill="#5d5d5d" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             </Viewbox>
                             <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
@@ -161,8 +161,8 @@
         <Setter Property="Foreground" Value="#a62f2f"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Height" Value="22"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Height" Value="19"/>
         <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="Template">
@@ -176,7 +176,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
-                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                            <Viewbox Height="15" Width="18" Margin="3 0 0 0">
                                 <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}" Stretch="None" Fill="#a62f2f" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             </Viewbox>
                             <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
@@ -215,8 +215,8 @@
         <Setter Property="Foreground" Value="#3d6e27"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Height" Value="22"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Height" Value="19"/>
         <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="Template">
@@ -230,7 +230,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
-                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                            <Viewbox Height="15" Width="18" Margin="3 0 0 0">
                                 <Path x:Name="Icon" Data="{DynamicResource add}" Stretch="None" Fill="#3d6e27" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             </Viewbox>
                             <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
@@ -249,6 +249,14 @@
                             <Setter TargetName="menuButton" Property="Background" Value="#4b8c2d"/>
                             <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
                         </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#dfdfdf"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+
+                        </Trigger>
+                        
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -260,8 +268,8 @@
         <Setter Property="Foreground" Value="#2f699a"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Height" Value="22"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Height" Value="19"/>
         <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="Template">
@@ -275,7 +283,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
-                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                            <Viewbox Height="15" Width="18" Margin="3 0 0 0">
                                 <Path x:Name="Icon" Data="{DynamicResource edit}" Stretch="None" Fill="#2f699a" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             </Viewbox>
                             <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
@@ -313,8 +321,8 @@
         <Setter Property="Foreground" Value="#a62f2f"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Height" Value="22"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Height" Value="19"/>
         <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="Template">
@@ -328,7 +336,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
-                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                            <Viewbox Height="15" Width="18" Margin="3 0 0 0">
                                 <Path x:Name="Icon" Data="{DynamicResource delete}" Stretch="None" Fill="#a62f2f" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             </Viewbox>
                             <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
@@ -370,8 +378,8 @@
         <Setter Property="Foreground" Value="#1f7c4b"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Height" Value="22"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Height" Value="19"/>
         <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="Template">
@@ -385,7 +393,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="210" HorizontalAlignment="Right"/>
-                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                            <Viewbox Height="15" Width="18" Margin="3 0 0 0">
                                 <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}" Stretch="None" Fill="#1f7c4b" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             </Viewbox>
                             <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
@@ -402,6 +410,12 @@
                             <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
                             <Setter TargetName="menuButton" Property="Background" Value="#1f7c4b"/>
                             <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#dfdfdf"/>
+                            <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
+
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -459,14 +473,14 @@
         <Setter Property="Foreground" Value="#a62f2f"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Height" Value="22"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Height" Value="19"/>
         <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="menuButton"  Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border x:Name="menuButton" CornerRadius="4"  Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="35"/>
@@ -474,7 +488,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Border x:Name="btnSelected" Grid.ColumnSpan="2" Width="230" HorizontalAlignment="Right"/>
-                            <Viewbox Height="18" Width="18" Margin="3 0 0 0">
+                            <Viewbox Height="15" Width="18" Margin="3 0 0 0">
                                 <Path x:Name="Icon" Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" Stretch="None" Fill="#a62f2f" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             </Viewbox>
                             <TextBlock x:Name="txtName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"
@@ -485,14 +499,12 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="txtName" Property="Foreground" Value="#a62f2f"/>
-                            <Setter TargetName="Icon" Property="Fill" Value="#a62f2f"/>
-                            <Setter TargetName="btnSelected" Property="Background" Value="#e67979"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#f2afaf"/>
 
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="Icon" Property="Fill" Value="#ffffff"/>
-                            <Setter TargetName="btnSelected" Property="Background" Value="#a62f2f"/>
+                            <Setter TargetName="menuButton" Property="Background" Value="#a62f2f"/>
                             <Setter TargetName="txtName" Property="Foreground" Value="#ffffff"/>
                         </Trigger>
                     </ControlTemplate.Triggers>

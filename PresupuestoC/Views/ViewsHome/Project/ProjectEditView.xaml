@@ -52,7 +52,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Cliente : "  Style="{DynamicResource lblForm}"/>
-                    <TextBox Text="{Binding Client, Converter={StaticResource converterClientText}}" Padding="5 2" Grid.Column="1" Style="{DynamicResource boxForm}" IsReadOnly="True">
+                    <TextBox Text="{Binding Client, Mode=OneWay, Converter={StaticResource converterClientText}}" Padding="5 2" Grid.Column="1" Style="{DynamicResource boxForm}" IsReadOnly="True">
                         <TextBox.InputBindings>
                             <MouseBinding Gesture="LeftClick" Command="{Binding ClientModalNavigation}" />
                         </TextBox.InputBindings>
@@ -71,7 +71,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Ubicacion : "  Style="{DynamicResource lblForm}"/>
-                    <TextBox Text="{Binding Location, Converter={StaticResource converterLocationText}}" Padding="5 2" Grid.Column="1" Style="{DynamicResource boxForm}" IsReadOnly="True">
+                    <TextBox Text="{Binding Location, Mode=OneWay,  Converter={StaticResource converterLocationText}}" Padding="5 2" Grid.Column="1" Style="{DynamicResource boxForm}" IsReadOnly="True">
                         <TextBox.InputBindings>
                             <MouseBinding Gesture="LeftClick" Command="{Binding LocationModalNavigation}" />
                         </TextBox.InputBindings>
@@ -151,7 +151,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Moneda : "  Style="{DynamicResource lblForm}"/>
-                    <TextBox Text="{Binding Currency, Converter={StaticResource converterCurrencyText}}" Padding="5 2"  Grid.Column="1" Style="{DynamicResource boxForm}">
+                    <TextBox Text="{Binding Currency, Mode=OneWay,  Converter={StaticResource converterCurrencyText}}" Padding="5 2"  Grid.Column="1" Style="{DynamicResource boxForm}">
                         <TextBox.InputBindings>
                             <MouseBinding Gesture="LeftClick" Command="{Binding CurrencyModalNavigation}" />
                         </TextBox.InputBindings>
@@ -214,8 +214,8 @@
 
 
                     </Grid.ColumnDefinitions>
-                    <Button Command="{Binding ProjectCreate}" Grid.Column="2" Content="Agregar" Style="{DynamicResource btnMain}" Tag="{DynamicResource add}"/>
-                    <Button  Grid.Column="3" Content="Cancelar" Style="{DynamicResource btnSecondary}" Tag="{DynamicResource cancel}"/>
+                    <Button IsEnabled="{Binding CanCreate}" Command="{Binding ProjectEdit}" Grid.Column="2" Content="Editar" Style="{DynamicResource btnMain}" Tag="{DynamicResource edit}"/>
+                    <Button Command="{Binding Cancel}" Grid.Column="3" Content="Cancelar" Style="{DynamicResource btnSecondary}" Tag="{DynamicResource cancel}"/>
                 </Grid>
 
 

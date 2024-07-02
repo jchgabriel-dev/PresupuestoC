@@ -1,9 +1,6 @@
 ﻿using PresupuestoC.Models.Archive;
 using PresupuestoC.Models.Main;
 using PresupuestoC.Services.Currency;
-using PresupuestoC.Services.Customer;
-using PresupuestoC.Services.Money;
-using PresupuestoC.Services.Position;
 using PresupuestoC.Services.Project;
 using System;
 using System.Collections.Generic;
@@ -23,21 +20,13 @@ namespace PresupuestoC.Stores.Project
         private readonly Lazy<Task> _initializeLazy;
         private readonly IProjectService _projectService;
         
-        private readonly ICustomerService _customerService;
-        private readonly IMoneyService _moneyService;
-        private readonly IPositionService _positionService;
-
-
 
         public IEnumerable<ProjectModel> Projects => _projects;
         public IEnumerable<StateModel> States => _states;
 
-        public ProjectListStore(IProjectService projectService, ICustomerService customerService, IMoneyService moneyService, IPositionService positionService)
+        public ProjectListStore(IProjectService projectService)
         {
-            _projectService = projectService;
-            _customerService = customerService;
-            _moneyService = moneyService;
-            _positionService = positionService;
+            _projectService = projectService;          
 
             _initializeLazy = new Lazy<Task>(Initialize);
             _projects = new List<ProjectModel>();
@@ -49,34 +38,43 @@ namespace PresupuestoC.Stores.Project
             await _initializeLazy.Value;
         }
 
-        public async Task CreateProject(ProjectModel project, CustomerModel customer, MoneyModel money, LocationModel location)
+        public async Task CreateProject(ProjectModel project, ClientArchiveModel client, CurrencyArchiveModel currency, LocationArchiveModel location)
         {
-            CustomerModel customerCreated = await _customerService.Create(customer);
-            MoneyModel moneyCreated = await _moneyService.Create(money);
-            LocationModel locationCreated = await _positionService.Create(location);
+            ClientArchiveModel clientCreated = await _projectService.CreateClientArchive(client);
+            CurrencyArchiveModel currencyCreated = await _projectService.CreateCurrencyArchive(currency);
+            LocationArchiveModel locationCreated = await _projectService.CreateLocationArchive(location);
 
-            project.CustomerId = customerCreated.Id;
-            project.MoneyId = moneyCreated.Id;
-            project.LocationId = locationCreated.Id;
+            project.ClientArchiveId = clientCreated.Id;
+            project.CurrencyArchiveId = currencyCreated.Id;
+            project.LocationArchiveId = locationCreated.Id;
 
-            ProjectModel itemCreated = await _projectService.Create(project);
-            _projects.Add(itemCreated);
+            ProjectModel itemCreated = await _projectService.CreateProject(project);
+            await Reload();
         }
 
         public async Task DeleteProject(int id)
         {
-            await _projectService.Delete(id);
-            var item = _projects.FirstOrDefault(c => c.Id == id);
-            _projects.Remove(item);
+            await _projectService.DeleteProject(id);
+            await Reload();
+
         }
 
 
-        public async Task UpdateProject(int id, ProjectModel project)
+        public async Task UpdateProject(int id, ProjectModel project, ClientArchiveModel client, CurrencyArchiveModel currency, LocationArchiveModel location)
         {
-            await _projectService.Update(id, project);
-            var item = _projects.FirstOrDefault(c => c.Id == id);
-           
+            await _projectService.UpdateClientArchive(project.ClientArchiveId, client);
+            await _projectService.UpdateCurrencyArchive(project.CurrencyArchiveId, currency);
+            await _projectService.UpdateLocationArchive(project.LocationArchiveId, location);
+
+            await _projectService.UpdateProject(id, project);
+            await Reload();           
         }
+
+        public async Task<ProjectModel> GetProject(int id)
+        {
+            return await _projectService.GetProject(id);
+        }
+
 
         public async Task Reload()
         {
@@ -85,7 +83,7 @@ namespace PresupuestoC.Stores.Project
 
         private async Task Initialize()
         {
-            IEnumerable<ProjectModel> projects = await _projectService.GetAll();
+            IEnumerable<ProjectModel> projects = await _projectService.GetAllProjects();
             _projects.Clear();
             _projects.AddRange(projects);
 

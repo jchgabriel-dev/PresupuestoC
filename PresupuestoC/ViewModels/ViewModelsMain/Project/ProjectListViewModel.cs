@@ -6,7 +6,9 @@ using PresupuestoC.MVVM;
 using PresupuestoC.Navigation.Main;
 using PresupuestoC.Navigation.Modal;
 using PresupuestoC.Stores.Client;
+using PresupuestoC.Stores.Folder;
 using PresupuestoC.Stores.Project;
+using PresupuestoC.Stores.SubBudget;
 using PresupuestoC.ViewModels.Client;
 using PresupuestoC.ViewModels.Main;
 using System;
@@ -43,18 +45,23 @@ namespace PresupuestoC.ViewModels.Project
             }
         }
 
+        public FolderModel ProjectFilterFolder => _selectedFolder.CurrentFolder;                               
+      
         // STORES
         private readonly ObservableCollection<ProjectModel> _projects;
         private readonly ObservableCollection<StateModel> _states;
 
-
         private ProjectSelectedStore _selectedStore;
+        private FolderSelectedStore _selectedFolder;
+
         public ProjectModel Selected
         {
             get => _selectedStore.CurrentProject;       
-            set => _selectedStore.CurrentProject = value;
-            
-        }
+            set => _selectedStore.CurrentProject = value;            
+        }        
+
+
+
 
         public IEnumerable<ProjectModel> Projects => _projects;
         public IEnumerable<StateModel> States => _states;
@@ -67,25 +74,39 @@ namespace PresupuestoC.ViewModels.Project
         // CONSTRUCTOR
         public ProjectListViewModel(ProjectListStore store,
             ProjectSelectedStore selectedStore,
-            NavigationService<BudgetViewModel> navigate)
+            NavigationService<BudgetViewModel> navigate,
+            FolderSelectedStore selectedFolder,
+            SubBudgetListStore subStore)
 
         {
             _selectedStore = selectedStore;
+            _selectedFolder = selectedFolder;
             _projects = new ObservableCollection<ProjectModel>();
             _states = new ObservableCollection<StateModel>();
 
             LoadProjects = new ProjectLoadCommand(this, store);
-            SelectProject = new ProjectSelectedCommand(selectedStore, navigate);
+            SelectProject = new ProjectSelectedCommand(selectedStore, navigate, subStore);
 
 
             ProjectCollection = CollectionViewSource.GetDefaultView(_projects);
+            ProjectCollection.Filter = FilterProject;
+            _selectedFolder.CurrentFolderChanged += FolderChanged;
 
             _selectedStore.Deselected();
+
         }
 
-        public static ProjectListViewModel LoadViewModel(ProjectListStore store, ProjectSelectedStore selectedStore, NavigationService<BudgetViewModel> navigate)
+
+        private void FolderChanged()
+        {
+            OnPropertyChanged(nameof(ProjectFilterFolder));
+            ProjectCollection.Refresh();
+        }
+
+
+        public static ProjectListViewModel LoadViewModel(ProjectListStore store, ProjectSelectedStore selectedStore, NavigationService<BudgetViewModel> navigate, FolderSelectedStore selectedFolder, SubBudgetListStore subStore)
         {          
-            ProjectListViewModel viewModel = new ProjectListViewModel(store, selectedStore, navigate);
+            ProjectListViewModel viewModel = new ProjectListViewModel(store, selectedStore, navigate, selectedFolder, subStore);
             viewModel.LoadProjects.Execute(null);
             return viewModel;
 
@@ -110,15 +131,14 @@ namespace PresupuestoC.ViewModels.Project
 
         private bool FilterProject(object obj)
         {
-            if (obj is ClientModel clientModel)
+            if (obj is ProjectModel projectModel)
             {
-                return clientModel.Name.Contains(ProjectFilterName, StringComparison.InvariantCultureIgnoreCase);
+                return projectModel.Name.Contains(ProjectFilterName, StringComparison.InvariantCultureIgnoreCase)
+                    && (projectModel.FolderId.Equals(ProjectFilterFolder?.Id) || (ProjectFilterFolder?.Id == 1)); 
             }
             return false;
 
-
         }
-
 
     }
 }

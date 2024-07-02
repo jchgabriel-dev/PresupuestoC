@@ -24,10 +24,10 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Crear sub-presupuesto" Foreground="#ffffff" 
-          FontSize="13" FontWeight="SemiBold" Padding="10 0" VerticalAlignment="Center"/>
+                <TextBlock Text="Editar sub-presupuesto" Foreground="#ffffff" 
+         FontSize="13" FontWeight="SemiBold" Padding="10 0" VerticalAlignment="Center"/>
                 <Button Grid.Column="1" Style="{DynamicResource btnClose}" Tag="{DynamicResource close}"
-                  Command="{Binding CloseModal}"/>
+                 Command="{Binding CloseModal}"/>
             </Grid>
         </Border>
 
@@ -46,14 +46,24 @@
                     <Button  Command="{Binding NameUpper}" Grid.Column="2" Style="{DynamicResource btnForm}" Tag="{DynamicResource mayus}" VerticalAlignment="Top"/>
 
                 </Grid>
+                <Border Height="10"/>
 
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="120"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <CheckBox x:Name="particularWork" IsChecked="{Binding ActiveWork, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Content="Jornada laboral particular" Style="{DynamicResource checkForm}"/>
+                    <CheckBox IsChecked="{Binding Active, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Content="Estado activo" Style="{DynamicResource checkForm}"/>
                 </Grid>
+
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="particularWork" IsChecked="{Binding LetWork, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Content="Jornada laboral particular" Style="{DynamicResource checkForm}"/>
+                </Grid>
+
 
 
                 <Grid>
@@ -99,9 +109,9 @@
                         <ColumnDefinition Width="50*"  MaxWidth="130"/>
                         <ColumnDefinition Width="50*"  MaxWidth="130"/>
                     </Grid.ColumnDefinitions>
-                    <Button IsEnabled="{Binding CanCreate}" Command="{Binding CreateFolder}" Content="Agregar" Tag="{DynamicResource add}" Grid.Column="1" Style="{DynamicResource btnMain}"/>
+                    <Button IsEnabled="{Binding CanCreate}" Command="{Binding EditSubBudget}" Content="Editar" Tag="{DynamicResource edit}" Grid.Column="1" Style="{DynamicResource btnMain}"/>
                     <Button Content="Cancelar" Tag="{DynamicResource cancel}" Grid.Column="2" 
-                     Style="{DynamicResource btnSecondary}"  Command="{Binding CloseModal}"/>
+                    Style="{DynamicResource btnSecondary}"  Command="{Binding CloseModal}"/>
                 </Grid>
 
             </StackPanel>
